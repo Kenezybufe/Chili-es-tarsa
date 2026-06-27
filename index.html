@@ -227,7 +227,7 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
 
-        /* Termék képe konténer (kontrasztos fehér háttér, h látszódjon a doboz) */
+        /* Termék képe konténer */
         .product-img-container {
             width: 100%;
             height: 240px;
@@ -236,7 +236,7 @@
             justify-content: center;
             padding: 20px;
             position: relative;
-            background: #ffffff; /* Fehér maradt, hogy a sötétben is kiemelje a termék valódi formáját */
+            background: #ffffff; /* Maradt a tiszta fehér háttér, hogy kiemelje a termékeket */
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -377,49 +377,49 @@
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- VALÓDI TERMÉKKÉPEK ADATBÁZISA ---
+        // --- STABIL ÉS MEGBÍZHATÓ TERMÉKKÉPEK ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
                 desc: 'Pörgesd fel magad a legnépszerűbb energiaitalokkal!',
                 items: [
-                    { name: 'Hell Classic 250ml', price: '320 Ft', img: "images (1).jpeg"
-                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://groby.hu/media/product/bc372_hell-black-cherry-szensavas-energiaital-250-ml.jpg' },
-                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://groby.hu/media/product/2e283_monster-energy-szensavas-energiaital-500-ml.jpg' }
+                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147424.jpg' },
+                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147402.jpg' },
+                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147427.jpg' }
                 ]
             },
             'rostos-italok': {
                 title: 'Rostos Italok',
                 desc: 'Valódi gyümölcsíz a mindennapokra.',
                 items: [
-                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://groby.hu/media/product/0f7e4_sio-almale-25-1-l.jpg' },
-                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://groby.hu/media/product/490ec_sio-narancsle-100-1-l.jpg' },
-                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://groby.hu/media/product/ef40a_sio-oszibarack-ital-25-1-l.jpg' }
+                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147513.jpg' },
+                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/34320499.jpg' },
+                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147509.jpg' }
                 ]
             },
             'szensavas-italok': {
                 title: 'Szénsavas Üdítők',
                 desc: 'Frissítő, buborékos klasszikusok.',
                 items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://groby.hu/media/product/a5332_coca-cola-szensavas-uditoital-500-ml.jpg' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://groby.hu/media/product/783bd_pepsi-cola-szensavas-uditoital-500-ml.jpg' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://groby.hu/media/product/a7cb4_fanta-narancs-szensavas-uditoital-500-ml.jpg' }
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147458.jpg' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147470.jpg' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16147466.jpg' }
                 ]
             },
             'edes-edessegek': {
                 title: 'Édes Édességek',
                 desc: 'Kekszek és csokoládék a nassoláshoz.',
                 items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://groby.hu/media/product/00c5c_pilota-tott-keksz-180-g.jpg' },
-                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://groby.hu/media/product/70c53_detki-csokis-orias-cookie-130-g.jpg' }
+                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16146603.jpg' },
+                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/34320078.jpg' }
                 ]
             },
             'sos-edessegek': {
                 title: 'Sós Édességek / Rágcsák',
                 desc: 'Sós finomságok baráti összejövetelekhez.',
                 items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://groby.hu/media/product/6efb5_chio-chips-sos-burgonyachips-130-g.jpg' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://groby.hu/media/product/99446_elephant-press-and-crack-perec-sos-80-g.jpg' }
+                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16146747.jpg' },
+                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://images.deliveryhero.io/image/fd-hu/Products/16146698.jpg' }
                 ]
             }
         };
