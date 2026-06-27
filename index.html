@@ -3,64 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termék Katalógus és Webshop</title>
+    <title>Prémium Termék Katalógus</title>
     <style>
-        /* Globális alapok */
+        /* Globális alapok és modern betűtípus */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #2d3748;
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Felső Fejléc */
+        /* Felső Fejléc - Modern, áttetsző "Glass" hatás */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 60px;
-            background-color: #1a1d20;
+            height: 70px;
+            background: rgba(25f, 31, 42, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 30px;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .menu-toggle-btn {
-            background: none;
+            background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 600;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        /* Bal oldali Sidebar */
+        .menu-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+
+        /* Bal oldali Prémium Sidebar */
         .sidebar {
             position: fixed;
-            top: 60px;
-            left: -300px;
-            width: 300px;
-            height: calc(100vh - 60px);
-            background-color: #212529;
+            top: 70px;
+            left: -320px;
+            width: 320px;
+            height: calc(100vh - 70px);
+            background-color: #1a202c;
             color: #fff;
-            transition: left 0.3s ease-in-out;
-            padding: 20px 0;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 25px 15px;
             overflow-y: auto;
             z-index: 99;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.15);
         }
 
         .sidebar.active {
@@ -69,76 +81,99 @@
 
         .menu-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        /* Menü gombok */
+        /* Elegáns Menü gombok */
         .menu-btn {
             width: 100%;
-            padding: 15px 25px;
-            background: none;
-            border: none;
-            color: #cfd2d6;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: #e2e8f0;
             text-align: left;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #2c3034;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .menu-btn:hover {
-            background-color: #2c3034;
-            color: #0d6efd;
+            background: rgba(49, 130, 206, 0.15);
+            border-color: #3182ce;
+            color: #63b3ed;
         }
 
         .arrow {
             transition: transform 0.3s;
             font-size: 0.8rem;
+            color: #a0aec0;
         }
 
         .menu-btn.open .arrow {
             transform: rotate(90deg);
+            color: #63b3ed;
         }
 
         /* Almenü stílusa */
         .submenu {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #1a1d20;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #141923;
             list-style: none;
+            border-radius: 12px;
+            margin-top: 5px;
         }
 
         .submenu-btn {
             width: 100%;
-            padding: 12px 40px;
+            padding: 12px 25px;
             background: none;
             border: none;
-            color: #a6abb1;
+            color: #a0aec0;
             text-align: left;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .submenu-btn:before {
+            content: "•";
+            color: #4a5568;
+            margin-right: 10px;
+            font-size: 1.2rem;
             transition: color 0.2s;
         }
 
         .submenu-btn:hover {
-            color: #0d6efd;
+            color: #63b3ed;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .submenu-btn:hover:before {
+            color: #3182ce;
         }
 
         /* Fő tartalom rész */
         .main-content {
-            margin-top: 60px;
-            padding: 40px 20px;
+            margin-top: 70px;
+            padding: 50px 30px;
             width: 100%;
-            transition: margin-left 0.3s ease-in-out;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @media (min-width: 768px) {
             body.sidebar-open .main-content {
-                margin-left: 300px;
+                margin-left: 320px;
             }
         }
 
@@ -148,81 +183,112 @@
         }
 
         .category-title {
-            font-size: 2rem;
-            color: #212529;
-            margin-bottom: 5px;
-            text-transform: capitalize;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .category-desc {
-            color: #6c757d;
-            margin-bottom: 25px;
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
         }
 
-        /* Függőleges termékrács */
+        /* --- EXKLUZÍV FÜGGŐLEGES TERMÉKRÁCS --- */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-            padding: 15px 0;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 30px;
+            padding: 10px 0;
         }
 
-        /* Termékkártya stílusa */
+        /* Prémium Termékkártya stílusa */
         .product-card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
         }
 
-        /* Termék képe konténer (fehér háttérrel, hogy tiszta legyen) */
+        /* Termék képe konténer */
         .product-img-container {
             width: 100%;
-            height: 220px;
+            height: 240px;
             background-color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            border-bottom: 1px solid #f0f2f5;
+            padding: 20px;
+            position: relative;
+            background: radial-gradient(circle, #ffffff 0%, #f7fafc 100%);
         }
 
         .product-img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        /* Kártya szöveges része */
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        /* Kártya alsó infó része */
         .product-info {
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
+            background: #fff;
+            border-top: 1px solid #edf2f7;
         }
 
         .product-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #212529;
-            margin-bottom: 10px;
-            min-height: 40px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+            min-height: 44px;
+            line-height: 1.4;
+        }
+
+        .product-price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
         }
 
         .product-price {
-            font-size: 1.15rem;
-            font-weight: bold;
-            color: #dc3545;
-            margin-top: auto;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #e53e3e; /* Modernebb, telt piros ár */
+        }
+
+        /* Kis díszítő kosár ikon helye az árnál (csak vizuális elemként) */
+        .cart-icon-visual {
+            width: 35px;
+            height: 35px;
+            background: #f7fafc;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -296,7 +362,7 @@
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- PONTOS ÉS VALÓDI TERMÉKKÉPEK ADATBÁZISA ---
+        // --- VALÓDI TERMÉKKÉPEK ADATBÁZISA ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
@@ -363,7 +429,10 @@
                     </div>
                     <div class="product-info">
                         <div class="product-name">${item.name}</div>
-                        <div class="product-price">${item.price}</div>
+                        <div class="product-price-container">
+                            <div class="product-price">${item.price}</div>
+                            <div class="cart-icon-visual">🛒</div>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
