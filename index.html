@@ -159,7 +159,7 @@
             margin-bottom: 25px;
         }
 
-        /* --- FÜGGŐLEGES TERMÉKRÁCS (GRID) --- */
+        /* Függőleges termékrács */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -183,7 +183,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
-        /* Termék képe - fehér hátérrel, hogy a dobozos/flakonos termékek jól mutassanak */
+        /* Termék képe konténer (fehér háttérrel, hogy tiszta legyen) */
         .product-img-container {
             width: 100%;
             height: 220px;
@@ -215,7 +215,7 @@
             font-weight: 600;
             color: #212529;
             margin-bottom: 10px;
-            min-height: 40px; /* Egyforma magasság a hosszabb neveknek is */
+            min-height: 40px;
         }
 
         .product-price {
@@ -278,7 +278,7 @@
             body.classList.toggle('sidebar-open');
         });
 
-        // Harmonika menü működtetése
+        // Harmonika menü
         function setupDropdown(toggleId, submenuId) {
             const toggle = document.getElementById(toggleId);
             const submenu = document.getElementById(submenuId);
@@ -296,49 +296,49 @@
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- TERMÉK ADATBÁZIS VALÓDI TERMÉKKÉPEKKEL ---
+        // --- PONTOS ÉS VALÓDI TERMÉKKÉPEK ADATBÁZISA ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
                 desc: 'Pörgesd fel magad a legnépszerűbb energiaitalokkal!',
                 items: [
-                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://cdn.panyolai.hu/images/products/600/98901.jpg' },
-                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://cdn.panyolai.hu/images/products/600/98910.jpg' },
-                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90104.jpg' }
+                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://groby.hu/media/product/6c8ff_hell-classic-szensavas-energiaital-250-ml.jpg' },
+                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://groby.hu/media/product/bc372_hell-black-cherry-szensavas-energiaital-250-ml.jpg' },
+                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://groby.hu/media/product/2e283_monster-energy-szensavas-energiaital-500-ml.jpg' }
                 ]
             },
             'rostos-italok': {
                 title: 'Rostos Italok',
                 desc: 'Valódi gyümölcsíz a mindennapokra.',
                 items: [
-                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90271.jpg' },
-                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90306.jpg' },
-                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90272.jpg' }
+                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://groby.hu/media/product/0f7e4_sio-almale-25-1-l.jpg' },
+                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://groby.hu/media/product/490ec_sio-narancsle-100-1-l.jpg' },
+                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://groby.hu/media/product/ef40a_sio-oszibarack-ital-25-1-l.jpg' }
                 ]
             },
             'szensavas-italok': {
                 title: 'Szénsavas Üdítők',
                 desc: 'Frissítő, buborékos klasszikusok.',
                 items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90001.jpg' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90145.jpg' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://cdn.panyolai.hu/images/products/600/90014.jpg' }
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://groby.hu/media/product/a5332_coca-cola-szensavas-uditoital-500-ml.jpg' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://groby.hu/media/product/783bd_pepsi-cola-szensavas-uditoital-500-ml.jpg' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://groby.hu/media/product/a7cb4_fanta-narancs-szensavas-uditoital-500-ml.jpg' }
                 ]
             },
             'edes-edessegek': {
                 title: 'Édes Édességek',
                 desc: 'Kekszek és csokoládék a nassoláshoz.',
                 items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://cdn.panyolai.hu/images/products/600/93006.jpg' },
-                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://cdn.panyolai.hu/images/products/600/93033.jpg' }
+                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://groby.hu/media/product/00c5c_pilota-tott-keksz-180-g.jpg' },
+                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://groby.hu/media/product/70c53_detki-csokis-orias-cookie-130-g.jpg' }
                 ]
             },
             'sos-edessegek': {
                 title: 'Sós Édességek / Rágcsák',
                 desc: 'Sós finomságok baráti összejövetelekhez.',
                 items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://cdn.panyolai.hu/images/products/600/93315.jpg' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://cdn.panyolai.hu/images/products/600/93261.jpg' }
+                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://groby.hu/media/product/6efb5_chio-chips-sos-burgonyachips-130-g.jpg' },
+                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://groby.hu/media/product/99446_elephant-press-and-crack-perec-sos-80-g.jpg' }
                 ]
             }
         };
@@ -369,7 +369,6 @@
                 grid.appendChild(card);
             });
 
-            // Mobilon elrejtjük a menüt kattintás után
             if (window.innerWidth < 768) {
                 sidebar.classList.remove('active');
                 body.classList.remove('sidebar-open');
