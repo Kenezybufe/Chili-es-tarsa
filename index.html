@@ -39,3 +39,334 @@
         .menu-toggle-btn {
             background: none;
             border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        /* Bal oldali Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: -300px;
+            width: 300px;
+            height: calc(100vh - 60px);
+            background-color: #212529;
+            color: #fff;
+            transition: left 0.3s ease-in-out;
+            padding: 20px 0;
+            overflow-y: auto;
+            z-index: 99;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        /* Menü gombok */
+        .menu-btn {
+            width: 100%;
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            color: #cfd2d6;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2c3034;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .menu-btn:hover {
+            background-color: #2c3034;
+            color: #0d6efd;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .menu-btn.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Almenü stílusa */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #1a1d20;
+            list-style: none;
+        }
+
+        .submenu-btn {
+            width: 100%;
+            padding: 12px 40px;
+            background: none;
+            border: none;
+            color: #a6abb1;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .submenu-btn:hover {
+            color: #0d6efd;
+        }
+
+        /* Fő tartalom rész */
+        .main-content {
+            margin-top: 60px;
+            padding: 40px 20px;
+            width: 100%;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        @media (min-width: 768px) {
+            body.sidebar-open .main-content {
+                margin-left: 300px;
+            }
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #212529;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+
+        .category-desc {
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+
+        /* --- A GÖRGETHETŐ TERMÉKSOR --- */
+        .product-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 15px 5px;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+        }
+
+        /* Termékkártya stílusa */
+        .product-card {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Termék képe */
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #eaedf1;
+        }
+
+        /* Kártya szöveges része */
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #dc3545;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <button class="menu-toggle-btn" id="menuToggle">
+            ☰ <span>Kategóriák</span>
+        </button>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <ul class="menu-list">
+            
+            <li>
+                <button class="menu-btn" id="italokToggle">Innivalók <span class="arrow">▶</span></button>
+                <ul class="submenu" id="italokSubmenu">
+                    <li><button class="submenu-btn" onclick="showCategory('energiaitalok')">Energiaitalok</button></li>
+                    <li><button class="submenu-btn" onclick="showCategory('rostos-italok')">Rostos italok</button></li>
+                    <li><button class="submenu-btn" onclick="showCategory('szensavas-italok')">Szénsavas üdítők</button></li>
+                </ul>
+            </li>
+
+            <li>
+                <button class="menu-btn" id="edessegToggle">Édességek <span class="arrow">▶</span></button>
+                <ul class="submenu" id="edessegSubmenu">
+                    <li><button class="submenu-btn" onclick="showCategory('edes-edessegek')">Édes édességek</button></li>
+                    <li><button class="submenu-btn" onclick="showCategory('sos-edessegek')">Sós édességek</button></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
+            <p id="catDesc" class="category-desc">Kérlek, válassz a bal oldali menüből a termékek megtekintéséhez.</p>
+            
+            <div class="product-slider" id="productSlider">
+                </div>
+        </div>
+    </main>
+
+    <script>
+        // Oldalsáv Nyitás / Csukás
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            body.classList.toggle('sidebar-open');
+        });
+
+        // Harmonika menü működtetése (Innivalók és Édességek lenyitása)
+        function setupDropdown(toggleId, submenuId) {
+            const toggle = document.getElementById(toggleId);
+            const submenu = document.getElementById(submenuId);
+
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('open');
+                if (submenu.style.maxHeight && submenu.style.maxHeight !== '0px') {
+                    submenu.style.maxHeight = '0px';
+                } else {
+                    submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                }
+            });
+        }
+
+        setupDropdown('italokToggle', 'italokSubmenu');
+        setupDropdown('edessegToggle', 'edessegSubmenu');
+
+        // --- TERMÉK ADATBÁZIS (Bővített változat) ---
+        const productsData = {
+            'energiaitalok': {
+                title: 'Energiaitalok',
+                desc: 'Pörgesd fel magad a legjobb energiaitalokkal!',
+                items: [
+                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://images.unsplash.com/photo-1622543953495-6d7af2495c6e?w=400' },
+                    { name: 'Hell Cherry 250ml', price: '320 Ft', img: 'https://images.unsplash.com/photo-1543257580-7269da773bf5?w=400' },
+                    { name: 'Monster Energy 500ml', price: '650 Ft', img: 'https://images.unsplash.com/photo-1622543952571-0f46c6ea1548?w=400' }
+                ]
+            },
+            'rostos-italok': {
+                title: 'Rostos Italok',
+                desc: 'Gyümölcsös frissítők a mindennapokra.',
+                items: [
+                    { name: 'Sió Almalé 1L', price: '690 Ft', img: 'https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=400' },
+                    { name: 'Sió Narancslé 1L', price: '720 Ft', img: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400' },
+                    { name: 'Cappy Őszibarack 1L', price: '750 Ft', img: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?w=400' }
+                ]
+            },
+            'szensavas-italok': {
+                title: 'Szénsavas Üdítők',
+                desc: 'A megunhatatlan klasszikus buborékos italok.',
+                items: [
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://images.unsplash.com/photo-1624517452488-04869289c4ca?w=400' }
+                ]
+            },
+            'edes-edessegek': {
+                title: 'Édes Édességek',
+                desc: 'Finom kekszek, csokik és sütik az édesszájúaknak.',
+                items: [
+                    { name: 'Pilóta Keksz', price: '590 Ft', img: 'https://images.unsplash.com/photo-1558961312-50346c099372?w=400' },
+                    { name: 'Csokis Cookie', price: '480 Ft', img: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400' },
+                    { name: 'Tejcsokoládé', price: '390 Ft', img: 'https://images.unsplash.com/photo-1511381939415-e44015466834?w=400' }
+                ]
+            },
+            'sos-edessegek': {
+                title: 'Sós Édességek / Rágcsák',
+                desc: 'Kiváló kísérők meccsnézéshez vagy beszélgetésekhez.',
+                items: [
+                    { name: 'Sós Kréker', price: '340 Ft', img: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400' },
+                    { name: 'Sós Perec', price: '290 Ft', img: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=400' },
+                    { name: 'Burgonya Chips', price: '550 Ft', img: 'https://images.unsplash.com/photo-1566478431377-9ef913a41a42?w=400' }
+                ]
+            }
+        };
+
+        // Kategória váltó funkció
+        function showCategory(categoryKey) {
+            const data = productsData[categoryKey];
+            if (!data) return;
+
+            document.getElementById('catTitle').innerText = data.title;
+            document.getElementById('catDesc').innerText = data.desc;
+
+            const slider = document.getElementById('productSlider');
+            slider.innerHTML = '';
+
+            data.items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="product-img">
+                    <div class="product-info">
+                        <div class="product-name">${item.name}</div>
+                        <div class="product-price">${item.price}</div>
+                    </div>
+                `;
+                slider.appendChild(card);
+            });
+
+            // Mobilon automatikus elrejtés választás után
+            if (window.innerWidth < 768) {
+                sidebar.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            }
+        }
+    </script>
+</body>
+</html>
