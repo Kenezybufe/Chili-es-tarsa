@@ -90,7 +90,7 @@
             gap: 12px;
         }
 
-        /* Elegáns Menü gombok a sötétben */
+        /* Elegáns Menü gombok */
         .menu-btn {
             width: 100%;
             padding: 14px 20px;
@@ -164,10 +164,6 @@
             background: rgba(255, 255, 255, 0.02);
         }
 
-        .submenu-btn:hover:before {
-            color: #3b82f6;
-        }
-
         /* Fő tartalom rész */
         .main-content {
             margin-top: 70px;
@@ -201,7 +197,7 @@
             margin-bottom: 35px;
         }
 
-        /* --- EXKLUZÍV SÖTÉT TERMÉKRÁCS --- */
+        /* --- MODERN TERMÉKRÁCS ÉS KÁRTYÁK --- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -209,7 +205,6 @@
             padding: 10px 0;
         }
 
-        /* Cyber Termékkártya stílusa */
         .product-card {
             background: rgba(30, 41, 59, 0.7);
             border-radius: 20px;
@@ -218,7 +213,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, border-color 0.3s;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
         }
 
         .product-card:hover {
@@ -227,31 +222,98 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
 
-        /* Termék képe konténer */
+        /* Digitális design doboz konténer (nincs többé külső kép hiba!) */
         .product-img-container {
             width: 100%;
             height: 240px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            background: #fff;
-            padding: 15px;
+            background: #111827;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Torzításmentes gyári doboz megjelenítés */
+        /* Generált 3D Hatású Eredeti Dobozok */
+        .can-mockup {
+            width: 70px;
+            height: 160px;
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: inset -15px 0 20px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.6);
+            border-top: 4px solid #94a3b8;
+            border-bottom: 4px solid #475569;
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover .product-img {
-            transform: scale(1.08);
+        .product-card:hover .can-mockup {
+            transform: scale(1.1) rotate(3deg);
         }
 
-        /* Kártya alsó infó része */
+        /* HELL CLASSIC DIZÁJN (Ördögvörös és fekete) */
+        .can-hell-classic {
+            background: linear-gradient(to right, #b91c1c, #000000);
+            color: #f8fafc;
+            border-left: 2px solid #ef4444;
+        }
+        .can-hell-classic::before {
+            content: "😈";
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px #ef4444;
+        }
+
+        /* HELL BLACK CHERRY DIZÁJN (Sötét meggy és fekete) */
+        .can-hell-cherry {
+            background: linear-gradient(to right, #581c87, #000000);
+            color: #f472b6;
+            border-left: 2px solid #a855f7;
+        }
+        .can-hell-cherry::before {
+            content: "🍒";
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px #a855f7;
+        }
+
+        /* MONSTER DIZÁJN (Matt fekete neonzöld karmokkal) */
+        .can-monster {
+            background: linear-gradient(to right, #111827, #000000);
+            color: #22c55e;
+            border-left: 2px solid #22c55e;
+        }
+        .can-monster::before {
+            content: " Claw ";
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #22c55e;
+            text-shadow: 0 0 12px #22c55e;
+            transform: rotate(-90deg);
+            white-space: nowrap;
+        }
+        .can-monster::after {
+            content: "🟢";
+            position: absolute;
+            top: 25px;
+            font-size: 1rem;
+        }
+
+        /* Általános ikon a többi kategóriához */
+        .generic-icon {
+            font-size: 4.5rem;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .generic-icon {
+            transform: scale(1.15);
+        }
+
+        /* Információs blokk */
         .product-info {
             padding: 20px;
             display: flex;
@@ -274,10 +336,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: auto;
         }
 
-        /* Neon piros világító ár */
         .product-price {
             font-size: 1.3rem;
             font-weight: 800;
@@ -285,7 +345,6 @@
             text-shadow: 0 0 10px rgba(255, 74, 90, 0.2);
         }
 
-        /* Kék világító kis kosár dizájn */
         .cart-icon-visual {
             width: 38px;
             height: 38px;
@@ -296,7 +355,6 @@
             align-items: center;
             justify-content: center;
             color: #60a5fa;
-            font-size: 0.95rem;
             transition: background 0.2s, color 0.2s;
         }
 
@@ -317,7 +375,6 @@
 
     <nav class="sidebar" id="sidebar">
         <ul class="menu-list">
-            
             <li>
                 <button class="menu-btn" id="italokToggle">Innivalók <span class="arrow">▶</span></button>
                 <ul class="submenu" id="italokSubmenu">
@@ -326,7 +383,6 @@
                     <li><button class="submenu-btn" onclick="showCategory('szensavas-italok')">Szénsavas üdítők</button></li>
                 </ul>
             </li>
-
             <li>
                 <button class="menu-btn" id="edessegToggle">Édességek <span class="arrow">▶</span></button>
                 <ul class="submenu" id="edessegSubmenu">
@@ -334,7 +390,6 @@
                     <li><button class="submenu-btn" onclick="showCategory('sos-edessegek')">Sós édességek</button></li>
                 </ul>
             </li>
-
         </ul>
     </nav>
 
@@ -349,7 +404,7 @@
     </main>
 
     <script>
-        // Oldalsáv Nyitás / Csukás
+        // Oldalsáv és Harmonika kezelés
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const body = document.body;
@@ -359,72 +414,64 @@
             body.classList.toggle('sidebar-open');
         });
 
-        // Harmonika menü
         function setupDropdown(toggleId, submenuId) {
             const toggle = document.getElementById(toggleId);
             const submenu = document.getElementById(submenuId);
-
             toggle.addEventListener('click', () => {
                 toggle.classList.toggle('open');
-                if (submenu.style.maxHeight && submenu.style.maxHeight !== '0px') {
-                    submenu.style.maxHeight = '0px';
-                } else {
-                    submenu.style.maxHeight = submenu.scrollHeight + 'px';
-                }
+                submenu.style.maxHeight = (submenu.style.maxHeight && submenu.style.maxHeight !== '0px') ? '0px' : submenu.scrollHeight + 'px';
             });
         }
-
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- VALÓDI, EREDETI TERMÉKKÉPEK (WIKIMEDIA ÉS JOGTISZTA STABIL AGGREGÁTOROK) ---
+        // --- ADATBÁZIS DIGITÁLIS GENERÁLÁSSAL (100% STABILITÁS) ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
-                desc: 'Pörgesd fel magad a legnépszerűbb eredeti energiaitalokkal!',
+                desc: 'A legnépszerűbb pörgetők pontos gyári arculattal.',
                 items: [
-                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Hell_Classic_energy_drink.jpg' },
-                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Hell_Black_Cherry.png' },
-                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Monster_Energy_Can.png' }
+                    { name: 'Hell Classic 250ml', price: '320 Ft', type: 'mockup', styleClass: 'can-hell-classic', label: 'HELL' },
+                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', type: 'mockup', styleClass: 'can-hell-cherry', label: 'HELL' },
+                    { name: 'Monster Energy Original 500ml', price: '650 Ft', type: 'mockup', styleClass: 'can-monster', label: 'M' }
                 ]
             },
             'rostos-italok': {
                 title: 'Rostos Italok',
-                desc: 'Valódi gyümölcsíz a mindennapokra.',
+                desc: 'Természetes gyümölcsízek.',
                 items: [
-                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg' },
-                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg' },
-                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Peach_and_section_with_stone.jpg' }
+                    { name: 'Sió Alma 25% 1L', price: '690 Ft', type: 'icon', icon: '🍎' },
+                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', type: 'icon', icon: '🍊' },
+                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', type: 'icon', icon: '🍑' }
                 ]
             },
             'szensavas-italok': {
                 title: 'Szénsavas Üdítők',
-                desc: 'Frissítő, buborékos klasszikusok.',
+                desc: 'Frissítő buborékos klasszikusok.',
                 items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Coca-Cola_Glass_Bottle.jpg' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Fanta_Orange_Can.png' }
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', type: 'icon', icon: '🥤' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', type: 'icon', icon: '🔵' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', type: 'icon', icon: '🍹' }
                 ]
             },
             'edes-edessegek': {
                 title: 'Édes Édességek',
-                desc: 'Kekszek és csokoládék a nassoláshoz.',
+                desc: 'Finom ropogós sütemények.',
                 items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Pil%C3%B3ta_keksz.jpg' },
-                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg' }
+                    { name: 'Pilóta Keksz 180g', price: '640 Ft', type: 'icon', icon: '🍪' },
+                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', type: 'icon', icon: '🍫' }
                 ]
             },
             'sos-edessegek': {
                 title: 'Sós Édességek / Rágcsák',
-                desc: 'Sós finomságok baráti összejövetelekhez.',
+                desc: 'Sós falatok bulikhoz.',
                 items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Potato-Chips.jpg' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Pretzel_with_salt.jpg' }
+                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', type: 'icon', icon: '🍿' },
+                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', type: 'icon', icon: '🥨' }
                 ]
             }
         };
 
-        // Kategória váltó funkció
         function showCategory(categoryKey) {
             const data = productsData[categoryKey];
             if (!data) return;
@@ -438,9 +485,18 @@
             data.items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                
+                // Vizuális tartalom eldöntése hiba nélkül
+                let visualHtml = '';
+                if(item.type === 'mockup') {
+                    visualHtml = `<div class="can-mockup ${item.styleClass}">${item.label}</div>`;
+                } else {
+                    visualHtml = `<div class="generic-icon">${item.icon}</div>`;
+                }
+
                 card.innerHTML = `
                     <div class="product-img-container">
-                        <img src="${item.img}" alt="${item.name}" class="product-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'">
+                        ${visualHtml}
                     </div>
                     <div class="product-info">
                         <div class="product-name">${item.name}</div>
@@ -461,3 +517,4 @@
     </script>
 </body>
 </html>
+ 
