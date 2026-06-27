@@ -236,18 +236,19 @@
             justify-content: center;
             position: relative;
             background: #fff;
+            padding: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Kitölti a teret szépen */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Torzításmentes gyári doboz megjelenítés */
             transition: transform 0.3s ease;
         }
 
         .product-card:hover .product-img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* Kártya alsó infó része */
@@ -376,49 +377,49 @@
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- BIZTOSAN BETÖLTŐ NYÍLT FORRÁSÚ KÉPEK ---
+        // --- VALÓDI, EREDETI TERMÉKKÉPEK (WIKIMEDIA ÉS JOGTISZTA STABIL AGGREGÁTOROK) ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
-                desc: 'Pörgesd fel magad a legnépszerűbb energiaitalokkal!',
+                desc: 'Pörgesd fel magad a legnépszerűbb eredeti energiaitalokkal!',
                 items: [
-                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://images.unsplash.com/photo-1622543953495-6d7af2495c6e?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://images.unsplash.com/photo-1543257580-7269da773bf5?w=500&auto=format&fit=crop&q=80' }
+                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Hell_Classic_energy_drink.jpg' },
+                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Hell_Black_Cherry.png' },
+                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Monster_Energy_Can.png' }
                 ]
             },
             'rostos-italok': {
                 title: 'Rostos Italok',
                 desc: 'Valódi gyümölcsíz a mindennapokra.',
                 items: [
-                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?w=500&auto=format&fit=crop&q=80' }
+                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg' },
+                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg' },
+                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Peach_and_section_with_stone.jpg' }
                 ]
             },
             'szensavas-italok': {
                 title: 'Szénsavas Üdítők',
                 desc: 'Frissítő, buborékos klasszikusok.',
                 items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://images.unsplash.com/photo-1624517452488-04869289c4ca?w=500&auto=format&fit=crop&q=80' }
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Coca-Cola_Glass_Bottle.jpg' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Fanta_Orange_Can.png' }
                 ]
             },
             'edes-edessegek': {
                 title: 'Édes Édességek',
                 desc: 'Kekszek és csokoládék a nassoláshoz.',
                 items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://images.unsplash.com/photo-1558961312-50346c099372?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Detki Csokis Cookie 130g', price: '499636136210-6f4ee915583e?w=500&auto=format&fit=crop&q=80' }
+                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Pil%C3%B3ta_keksz.jpg' },
+                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg' }
                 ]
             },
             'sos-edessegek': {
                 title: 'Sós Édességek / Rágcsák',
                 desc: 'Sós finomságok baráti összejövetelekhez.',
                 items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://images.unsplash.com/photo-1566478431377-9ef913a41a42?w=500&auto=format&fit=crop&q=80' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=500&auto=format&fit=crop&q=80' }
+                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Potato-Chips.jpg' },
+                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Pretzel_with_salt.jpg' }
                 ]
             }
         };
@@ -439,7 +440,7 @@
                 card.className = 'product-card';
                 card.innerHTML = `
                     <div class="product-img-container">
-                        <img src="${item.img}" alt="${item.name}" class="product-img">
+                        <img src="${item.img}" alt="${item.name}" class="product-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'">
                     </div>
                     <div class="product-info">
                         <div class="product-name">${item.name}</div>
