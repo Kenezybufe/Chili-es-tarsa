@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termék Katalógus</title>
+    <title>Termék Katalógus és Webshop</title>
     <style>
         /* Globális alapok */
         * {
@@ -15,21 +14,21 @@
         }
 
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
             color: #333;
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Navigációs gomb a fejlécben */
+        /* Felső Fejléc */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 60px;
-            background-color: #24292e;
+            background-color: #1a1d20;
             display: flex;
             align-items: center;
             padding: 0 20px;
@@ -40,266 +39,3 @@
         .menu-toggle-btn {
             background: none;
             border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-
-        /* Oldalsó menü (Sidebar) stílusa */
-        .sidebar {
-            position: fixed;
-            top: 60px;
-            left: -300px; /* Alaphelyzetben rejtve van balra */
-            width: 300px;
-            height: calc(100vh - 60px);
-            background-color: #1f2327;
-            color: #fff;
-            transition: left 0.3s ease-in-out;
-            padding: 20px 0;
-            overflow-y: auto;
-            z-index: 99;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-        }
-
-        /* Amikor a menü aktív/nyitva van */
-        .sidebar.active {
-            left: 0;
-        }
-
-        /* Menüpontok listája */
-        .menu-list {
-            list-style: none;
-        }
-
-        .menu-item {
-            border-bottom: 1px solid #2d3238;
-        }
-
-        /* Kategória gombok */
-        .category-btn {
-            width: 100%;
-            padding: 15px 25px;
-            background: none;
-            border: none;
-            color: #c8d1d9;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .category-btn:hover {
-            background-color: #2d3238;
-            color: #58a6ff;
-        }
-
-        /* Nyíl ikon animációja */
-        .arrow {
-            transition: transform 0.3s;
-            font-size: 0.8rem;
-        }
-
-        .category-btn.open .arrow {
-            transform: rotate(90deg);
-        }
-
-        /* Almenük (rejtve alapból) */
-        .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #161b22;
-            list-style: none;
-        }
-
-        /* Alkategóriák (pl. Édes / Sós) */
-        .sub-category-btn {
-            width: 100%;
-            padding: 12px 35px;
-            background: none;
-            border: none;
-            color: #8b949e;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .sub-category-btn:hover {
-            color: #58a6ff;
-        }
-
-        .sub-submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #0d1117;
-            list-style: none;
-        }
-
-        /* Konkrét termékek linkjei */
-        .product-link {
-            display: block;
-            padding: 10px 50px;
-            color: #8b949e;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s, padding-left 0.2s;
-        }
-
-        .product-link:hover {
-            color: #58a6ff;
-            padding-left: 55px;
-        }
-
-        /* Fő tartalom terület */
-        .main-content {
-            margin-top: 60px;
-            padding: 40px;
-            width: 100%;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        /* Amikor a menü nyitva van, a tartalom picit eltolódik asztali gépen */
-        @media (min-width: 768px) {
-            body.sidebar-open .main-content {
-                margin-left: 300px;
-            }
-        }
-
-        .welcome-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .welcome-card h1 {
-            color: #24292e;
-            margin-bottom: 15px;
-        }
-
-        .welcome-card p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Felső Fejléc a Menügombbal -->
-    <header class="header">
-        <button class="menu-toggle-btn" id="menuToggle">
-            ☰ <span>Menü</span>
-        </button>
-    </header>
-
-    <!-- Bal oldali lenyitható Navigáció -->
-    <nav class="sidebar" id="sidebar">
-        <ul class="menu-list">
-            
-            <!-- 1. KATEGÓRIA: INNIVALÓK -->
-            <li class="menu-item">
-                <button class="category-btn">Innivalók <span class="arrow">▶</span></button>
-                <ul class="submenu">
-                    <li><a href="#" class="product-link">Coca-Cola</a></li>
-                    <li><a href="#" class="product-link">Pepsi</a></li>
-                    <li><a href="#" class="product-link">Hell Classic</a></li>
-                    <li><a href="#" class="product-link">Hell Cherry</a></li>
-                </ul>
-            </li>
-
-            <!-- 2. KATEGÓRIA: ÉDESSÉGEK (Alcsoportokkal) -->
-            <li class="menu-item">
-                <button class="category-btn">Édességek <span class="arrow">▶</span></button>
-                <ul class="submenu">
-                    
-                    <!-- Édes alkategória -->
-                    <li>
-                        <button class="sub-category-btn">Édes <span class="arrow">▶</span></button>
-                        <ul class="sub-submenu">
-                            <li><a href="#" class="product-link">Pilóta keksz</a></li>
-                            <li><a href="#" class="product-link">Cookie (Csokis keksz)</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Sós alkategória -->
-                    <li>
-                        <button class="sub-category-btn">Sós <span class="arrow">▶</span></button>
-                        <ul class="sub-submenu">
-                            <li><a href="#" class="product-link">Sós kréker</a></li>
-                            <li><a href="#" class="product-link">Perec</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-
-        </ul>
-    </nav>
-
-    <!-- Főoldal tartalma -->
-    <main class="main-content">
-        <div class="welcome-card">
-            <h1>Üdvözöllek a weboldalon!</h1>
-            <p>Kattints a bal felső sarokban lévő <strong>☰ Menü</strong> gombra a kategóriák böngészéséhez.</p>
-        </div>
-    </main>
-
-    <!-- Működést vezérlő JavaScript -->
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const body = document.body;
-
-        // 1. Sidebar nyitás / csukás gombnyomásra
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            body.classList.toggle('sidebar-open');
-        });
-
-        // 2. Harmonika-szerű lenyílás kezelése a fő- és alkategóriáknál
-        const dropdownButtons = document.querySelectorAll('.category-btn, .sub-category-btn');
-
-        dropdownButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                // Nyíl elforgatása osztály hozzáadásával
-                button.classList.toggle('open');
-                
-                // A gomb után közvetlenül következő lista (almenü) kiválasztása
-                const targetSubmenu = button.nextElementSibling;
-
-                if (targetSubmenu) {
-                    if (targetSubmenu.style.maxHeight && targetSubmenu.style.maxHeight !== '0px') {
-                        // Ha nyitva van, becsukjuk
-                        targetSubmenu.style.maxHeight = '0px';
-                    } else {
-                        // Ha csukva van, megnyitjuk a tartalom valós magasságára
-                        targetSubmenu.style.maxHeight = targetSubmenu.scrollHeight + 'px';
-                        
-                        // Ha egy belső almenü nyílik meg, a szülő menü magasságát is frissíteni kell, hogy ne vágja le
-                        const parentSubmenu = button.closest('.submenu');
-                        if (parentSubmenu) {
-                            parentSubmenu.style.maxHeight = (parentSubmenu.scrollHeight + targetSubmenu.scrollHeight) + 'px';
-                        }
-                    }
-                }
-                e.stopPropagation();
-            });
-        });
-    </script>
-</body>
-</html>
