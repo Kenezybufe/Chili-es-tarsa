@@ -130,7 +130,7 @@
         .submenu {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.3s ease-out;
             background-color: rgba(15, 23, 42, 0.6);
             list-style: none;
             border-radius: 14px;
@@ -223,7 +223,7 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
 
-        /* Termék képe konténer (tiszta fehér háttér, hogy látszódjon a doboz) */
+        /* Termék képe konténer */
         .product-img-container {
             width: 100%;
             height: 240px;
@@ -261,9 +261,16 @@
             font-size: 1.05rem;
             font-weight: 600;
             color: #f1f5f9;
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             min-height: 44px;
             line-height: 1.4;
+        }
+
+        /* DRS Visszaváltási infó szöveg stílusa */
+        .drs-notice {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 12px;
         }
 
         .product-price-container {
@@ -355,17 +362,31 @@
             body.classList.toggle('sidebar-open');
         });
 
-        // Harmonika menü
+        // Harmonika menü kezelő
         function setupDropdown(toggleId, submenuId) {
             const toggle = document.getElementById(toggleId);
             const submenu = document.getElementById(submenuId);
 
             toggle.addEventListener('click', () => {
-                toggle.classList.toggle('open');
-                if (submenu.style.maxHeight && submenu.style.maxHeight !== '0px') {
-                    submenu.style.maxHeight = '0px';
-                } else {
+                const isOpen = toggle.classList.toggle('open');
+                
+                if (isOpen) {
                     submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                    submenu.addEventListener('transitionend', function functionName(e) {
+                        if (e.propertyName === 'max-height' && toggle.classList.contains('open')) {
+                            submenu.style.maxHeight = 'auto';
+                        }
+                        submenu.removeEventListener('transitionend', functionName);
+                    });
+                } else {
+                    if(submenu.style.maxHeight === 'auto') {
+                        submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                        setTimeout(() => {
+                            submenu.style.maxHeight = '0px';
+                        }, 10);
+                    } else {
+                        submenu.style.maxHeight = '0px';
+                    }
                 }
             });
         }
@@ -373,49 +394,60 @@
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
-        // --- VALÓDI JOGTISZTA TERMÉKKÉPEK JAVÍTOTT KÖZVETLEN FORRÁSBÓL ---
+        // --- TERMÉK ADATBÁZIS ---
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
                 desc: 'Pörgesd fel magad a legnépszerűbb energiaitalokkal!',
                 items: [
-                    { name: 'Hell Classic 250ml', price: '320 Ft', img: 'https://images.openfoodfacts.org/images/products/599/988/280/0013/front_fr.24.400.jpg' },
-                    { name: 'Hell Black Cherry 250ml', price: '320 Ft', img: 'https://images.openfoodfacts.org/images/products/599/988/280/2383/front_fr.11.400.jpg' },
-                    { name: 'Monster Energy Original 500ml', price: '650 Ft', img: 'https://images.openfoodfacts.org/images/products/506/033/750/0228/front_fr.109.400.jpg' }
+                    { name: 'Hell Classic 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0013/front_fr.24.400.jpg' },
+                    { name: 'Hell Black Cherry 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2383/front_fr.11.400.jpg' },
+                    { name: 'Hell Lemon Pink-Grapefruit 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2826/front_hu.10.400.jpg' },
+                    { name: 'Hell Caffeine Free 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0174/front_hu.21.400.jpg' },
+                    { name: 'Hell Strong Apple 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0228/front_hu.36.400.jpg' },
+                    { name: 'Hell Strong Red Grape 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0075/front_hu.32.400.jpg' },
+                    { name: 'Hell Strong Watermelon 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2185/front_fr.14.400.jpg' },
+                    { name: 'Hell Focus+ 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0310/front_hu.25.400.jpg' },
+                    { name: 'Hell Zero Classic 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/0419/front_hu.20.400.jpg' },
+                    { name: 'Hell Zero Green Apple 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2628/front_hu.10.400.jpg' },
+                    { name: 'Hell Zero Berry 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2925/front_hu.9.400.jpg' },
+                    { name: 'Hell Zero White Peach 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/2901/front_hu.11.400.jpg' },
+                    { name: 'Hell Cactus Twist Flavour 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/3021/front_hu.7.400.jpg' },
+                    { name: 'Hell Cotton Candy Flavour 250ml', price: '499 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/599/988/280/3007/front_hu.7.400.jpg' }
                 ]
             },
             'rostos-italok': {
                 title: 'Rostos Italok',
                 desc: 'Valódi gyümölcsíz a mindennapokra.',
                 items: [
-                    { name: 'Sió Alma 25% 1L', price: '690 Ft', img: 'https://images.openfoodfacts.org/images/products/599/739/010/0173/front_hu.21.400.jpg' },
-                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', img: 'https://images.openfoodfacts.org/images/products/599/739/010/0197/front_hu.16.400.jpg' },
-                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', img: 'https://images.openfoodfacts.org/images/products/599/739/010/0210/front_hu.19.400.jpg' }
+                    { name: 'Sió Alma 25% 1L', price: '690 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/739/010/0173/front_hu.21.400.jpg' },
+                    { name: 'Sió Narancs 100% 1L', price: '890 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/739/010/0197/front_hu.16.400.jpg' },
+                    { name: 'Sió Őszibarack 25% 1L', price: '720 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/739/010/0210/front_hu.19.400.jpg' }
                 ]
             },
             'szensavas-italok': {
                 title: 'Szénsavas Üdítők',
                 desc: 'Frissítő, buborékos klasszikusok.',
                 items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
+                    { name: 'Coca-Cola 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
+                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
                 ]
             },
             'edes-edessegek': {
                 title: 'Édes Édességek',
                 desc: 'Kekszek és csokoládék a nassoláshoz.',
                 items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', img: 'https://images.openfoodfacts.org/images/products/762/221/049/2290/front_hu.43.400.jpg' },
-                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', img: 'https://images.openfoodfacts.org/images/products/599/744/611/8633/front_hu.12.400.jpg' }
+                    { name: 'Pilóta Keksz 180g', price: '640 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/762/221/049/2290/front_hu.43.400.jpg' },
+                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/744/611/8633/front_hu.12.400.jpg' }
                 ]
             },
             'sos-edessegek': {
                 title: 'Sós Édességek / Rágcsák',
                 desc: 'Sós finomságok baráti összejövetelekhez.',
                 items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', img: 'https://images.openfoodfacts.org/images/products/599/720/011/5120/front_hu.30.400.jpg' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', img: 'https://images.openfoodfacts.org/images/products/642/474/000/2202/front_hu.22.400.jpg' }
+                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/720/011/5120/front_hu.30.400.jpg' },
+                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/642/474/000/2202/front_hu.22.400.jpg' }
                 ]
             }
         };
@@ -434,12 +466,19 @@
             data.items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                
+                // DRS megjegyzés kezelése
+                const drsText = item.drs ? '+50 Ft visszaváltási díj' : '&nbsp;';
+
                 card.innerHTML = `
                     <div class="product-img-container">
                         <img src="${item.img}" alt="${item.name}" class="product-img">
                     </div>
                     <div class="product-info">
-                        <div class="product-name">${item.name}</div>
+                        <div>
+                            <div class="product-name">${item.name}</div>
+                            <div class="drs-notice">${drsText}</div>
+                        </div>
                         <div class="product-price-container">
                             <div class="product-price">${item.price}</div>
                             <div class="cart-icon-visual">🛒</div>
