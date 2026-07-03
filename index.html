@@ -3,497 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Cyber Termék Katalógus</title>
+    <title>Csiri és Társa - Termék Katalógus</title>
     <style>
-        /* Globális alapok és modern betűtípus */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; min-height: 100vh; overflow-x: hidden; }
+        
+        .header { position: fixed; top: 0; left: 0; width: 100%; height: 70px; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); display: flex; align-items: center; padding: 0 30px; z-index: 100; box-shadow: 0 4px 30px rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .menu-toggle-btn { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border: none; color: white; padding: 10px 24px; border-radius: 50px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 10px; }
 
-        /* Modern Sötét Háttér */
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f8fafc;
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+        .sidebar { position: fixed; top: 70px; left: -320px; width: 320px; height: calc(100vh - 70px); background: rgba(30, 41, 59, 0.95); transition: 0.3s; padding: 20px; z-index: 99; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.05); }
+        .sidebar.active { left: 0; }
+        .menu-btn { width: 100%; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; border-radius: 10px; margin-bottom: 8px; cursor: pointer; text-align: left; }
+        .submenu { display: none; padding-left: 20px; margin-bottom: 10px; }
+        .submenu.show { display: block; }
+        .submenu-btn { width: 100%; padding: 10px; background: none; border: none; color: #94a3b8; cursor: pointer; text-align: left; }
 
-        /* Felső Fejléc - Áttetsző sötét üveg hatás */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            display: flex;
-            align-items: center;
-            padding: 0 30px;
-            z-index: 100;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Neon kék világító gomb */
-        .menu-toggle-btn {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            border: none;
-            color: white;
-            font-size: 1rem;
-            padding: 10px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .menu-toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Bal oldali Prémium Sötét Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 70px;
-            left: -320px;
-            width: 320px;
-            height: calc(100vh - 70px);
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 25px 15px;
-            overflow-y: auto;
-            z-index: 99;
-            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .menu-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* Elegáns Menü gombok a sötétben */
-        .menu-btn {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
-            color: #cbd5e1;
-            text-align: left;
-            font-size: 1.05rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.25s ease;
-        }
-
-        .menu-btn:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            color: #60a5fa;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
-        }
-
-        .arrow {
-            transition: transform 0.3s;
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-
-        .menu-btn.open .arrow {
-            transform: rotate(90deg);
-            color: #60a5fa;
-        }
-
-        /* Almenü stílusa */
-        .submenu {
-            display: none; /* Alapértelmezetten rejtve, JS kezeli */
-            background-color: rgba(15, 23, 42, 0.6);
-            list-style: none;
-            border-radius: 14px;
-            margin-top: 5px;
-            padding: 5px 0;
-        }
-
-        .submenu.show {
-            display: block; /* Ha aktív, megjelenik */
-        }
-
-        .submenu-btn {
-            width: 100%;
-            padding: 14px 25px;
-            background: none;
-            border: none;
-            color: #94a3b8;
-            text-align: left;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-        }
-
-        .submenu-btn:before {
-            content: "•";
-            color: #475569;
-            margin-right: 12px;
-            font-size: 1.2rem;
-            transition: color 0.2s;
-        }
-
-        .submenu-btn:hover {
-            color: #60a5fa;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Fő tartalom rész */
-        .main-content {
-            margin-top: 70px;
-            padding: 50px 30px;
-            width: 100%;
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @media (min-width: 768px) {
-            body.sidebar-open .main-content {
-                margin-left: 320px;
-            }
-        }
-
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #f8fafc;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .category-desc {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 35px;
-        }
-
-        /* --- EXKLUZÍV SÖTÉT TERMÉKRÁCS --- */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 30px;
-            padding: 10px 0;
-        }
-
-        /* Cyber Termékkártya stílusa */
-        .product-card {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, border-color 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-
-        /* Termék képe konténer */
-        .product-img-container {
-            width: 100%;
-            height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            background: #ffffff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .product-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05);
-        }
-
-        /* Kártya alsó infó része */
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            background: rgba(30, 41, 59, 0.4);
-        }
-
-        .product-name {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #f1f5f9;
-            margin-bottom: 4px;
-            min-height: 44px;
-            line-height: 1.4;
-        }
-
-        /* DRS Visszaváltási infó szöveg stílusa */
-        .drs-notice {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 12px;
-        }
-
-        .product-price-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        /* Neon piros világító ár */
-        .product-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #ff4a5a;
-            text-shadow: 0 0 10px rgba(255, 74, 90, 0.2);
-        }
-
-        /* Kék világító kis kosár dizájn */
-        .cart-icon-visual {
-            width: 38px;
-            height: 38px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #60a5fa;
-            font-size: 0.95rem;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .product-card:hover .cart-icon-visual {
-            background: #3b82f6;
-            color: #fff;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
-        }
+        .main-content { margin-top: 70px; padding: 50px 30px; }
+        .logo-container { text-align: center; margin-bottom: 30px; }
+        .logo-hero { max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .content-container { max-width: 1200px; margin: 0 auto; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; margin-top: 30px; }
+        .product-card { background: rgba(30, 41, 59, 0.7); border-radius: 20px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .product-img-container { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 15px; margin-bottom: 15px; }
+        .product-img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .product-name { font-weight: 600; margin-bottom: 5px; }
+        .product-price { color: #ff4a5a; font-weight: 800; font-size: 1.2rem; }
+        .drs-notice { font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <button class="menu-toggle-btn" id="menuToggle">
-            ☰ <span>Kategóriák</span>
-        </button>
+        <button class="menu-toggle-btn" id="menuToggle">☰ Kategóriák</button>
     </header>
 
     <nav class="sidebar" id="sidebar">
-        <ul class="menu-list">
-            
-            <li>
-                <button class="menu-btn" id="italokToggle">Innivalók <span class="arrow">▶</span></button>
-                <ul class="submenu" id="italokSubmenu">
-                    <li><button class="submenu-btn" onclick="showCategory('energiaitalok')">Energiaitalok</button></li>
-                    <li><button class="submenu-btn" onclick="showCategory('rostos-italok')">Rostos italok</button></li>
-                    <li><button class="submenu-btn" onclick="showCategory('szensavas-italok')">Szénsavas üdítők</button></li>
-                </ul>
-            </li>
-
-            <li>
-                <button class="menu-btn" id="edessegToggle">Édességek <span class="arrow">▶</span></button>
-                <ul class="submenu" id="edessegSubmenu">
-                    <li><button class="submenu-btn" onclick="showCategory('edes-edessegek')">Édes édességek</button></li>
-                    <li><button class="submenu-btn" onclick="showCategory('sos-edessegek')">Sós édességek</button></li>
-                </ul>
-            </li>
-
+        <button class="menu-btn" onclick="toggleSubmenu('italokSubmenu')">Innivalók ▼</button>
+        <ul class="submenu show" id="italokSubmenu">
+            <li><button class="submenu-btn" onclick="showCategory('energiaitalok')">• Energiaitalok</button></li>
+            <li><button class="submenu-btn" onclick="showCategory('rostos-italok')">• Rostos italok</button></li>
+            <li><button class="submenu-btn" onclick="showCategory('szensavas-italok')">• Szénsavas üdítők</button></li>
+        </ul>
+        <button class="menu-btn" onclick="toggleSubmenu('edessegSubmenu')">Édességek ▼</button>
+        <ul class="submenu show" id="edessegSubmenu">
+            <li><button class="submenu-btn" onclick="showCategory('edes-edessegek')">• Édes édességek</button></li>
+            <li><button class="submenu-btn" onclick="showCategory('sos-edessegek')">• Sós édességek</button></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="content-container">
-            <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
-            <p id="catDesc" class="category-desc">Kérlek, válassz a bal oldali menüből a termékek megtekintéséhez.</p>
-            
-            <div class="product-grid" id="productGrid">
+            <div class="logo-container">
+                <img src="file_0000000067507243a08155a864e9b714.png" alt="Csiri és Társa Logo" class="logo-hero">
             </div>
+            <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
+            <p id="catDesc" class="category-desc">Kérlek, válassz a bal oldali menüből.</p>
+            <div class="product-grid" id="productGrid"></div>
         </div>
     </main>
 
     <script>
-        // Oldalsáv Nyitás / Csukás kezelése
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const body = document.body;
-
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Meggátolja, hogy a kattintás azonnal bezárja a menüt
-            sidebar.classList.toggle('active');
-            body.classList.toggle('sidebar-open');
-        });
-
-        // Harmonika menü (Almenük) kezelése
-        function setupDropdown(toggleId, submenuId) {
-            const toggle = document.getElementById(toggleId);
-            const submenu = document.getElementById(submenuId);
-
-            toggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isOpen = toggle.classList.toggle('open');
-                submenu.classList.toggle('show');
-            });
-        }
-
-        setupDropdown('italokToggle', 'italokSubmenu');
-        setupDropdown('edessegToggle', 'edessegSubmenu');
-
-        // Ha a menün kívülre kattint a felhasználó, záródjon be
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && e.target !== menuToggle) {
-                sidebar.classList.remove('active');
-                body.classList.remove('sidebar-open');
-            }
-        });
-
-        // --- TERMÉK ADATBÁZIS ---
         const productsData = {
-            'energiaitalok': {
-                title: 'Energiaitalok',
-                desc: 'Pörgesd fel magad a legnépszerűbb energiaitalokkal!',
-                items: [
-                    { name: 'Hell Classic 250ml', price: '499 Ft', drs: true, img: 'Hell.jpg' },
-                    { name: 'Hell Black Cherry 250ml', price: '499 Ft', drs: true, img: 'HellCherry.jpg' },
-                    { name: 'Hell Lemon Pink-Grapefruit 250ml', price: '499 Ft', drs: true, img: 'HellGrapefruit.jpg' },
-                    { name: 'Hell Caffeine Free 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2023/09/HELL_CAFFEINE_FREE_250_ED_01.png' },
-                    { name: 'Hell Strong Apple 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/05/HELL_Strong_Apple_250_ED-cutout-cutout.png' },
-                    { name: 'Hell Strong Red Grape 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/04/HELL_Strong_RedGrape_250_ED-copy.png' },
-                    { name: 'Hell Strong Watermelon 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2022/03/HELL_Strong_Watermelon_250_ED_01.png' },
-                    { name: 'Hell Focus+ 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2023/05/HELL_Focus_250_ED_01.png' },
-                    { name: 'Hell Zero Classic 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/07/HELL_Zero_CLASSIC_2025_HU_PACKSHOTs_2.png' },
-                    { name: 'Hell Zero Green Apple 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/01/HELL_GREEN_APPLE_HU_PACKSHOTs_fentrol.png' },
-                    { name: 'Hell Zero Berry 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/05/HELL_Zero_BERRY_2025_HU_PACKSHOTs_2.png' },
-                    { name: 'Hell Zero White Peach 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/05/HELL_Zero_WHITE_PEACH_2025_HU_PACKSHOTs_2.png' },
-                    { name: 'Hell Cactus Twist Flavour 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/04/HELL_Carnival_ED_Cactus_Twist_2026_HU_Packshot_01.png' },
-                    { name: 'Hell Cotton Candy Flavour 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/04/HELL_Carnival_ED_Cotton_Candy_2026_HU_Packshot_01.png' },
-                ]
-            },
-            'rostos-italok': {
-                title: 'Rostos Italok',
-                desc: 'Valódi gyümölcsíz a mindennapokra.',
-                items: [
-                    { name: 'Toma Alma 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2023/04/toma_alma.jpg?fit=800%2C800&ssl=1' },
-                    { name: 'Toma Narancsnektár 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2025/04/toma-narancs.jpg?fit=800%2C800&ssl=1' },
-                    { name: 'Toma Őszibarack 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2023/04/toma_barack.jpg?fit=800%2C800&ssl=1' },
-                    { name: 'Toma Multivitamin 0.5', price: '690 Ft', drs: true, img: '' },
-                    { name: 'Toma Narancsnektár 0.5', price: '690 Ft', drs: true, img: '' },
-                    { name: 'Toma Meggy-Alma 0.5', price: '690 Ft', drs: true, img: '' },
-                    { name: 'Toma Alma 0.5', price: '690 Ft', drs: true, img: '' },
-                    { name: 'Toma feketeribizli 0.33', price: '800 Ft', drs: true, img: '' },
-                    { name: 'Toma Őszibarack 0.33', price: '800 Ft', drs: true, img: '' },
-                ]
-            },
-            'szensavas-italok': {
-                title: 'Szénsavas Üdítők',
-                desc: 'Frissítő, buborékos klasszikusok.',
-                items: [
-                    { name: 'Coca-Cola 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
-                    { name: 'Pepsi Cola 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
-                    { name: 'Fanta Narancs 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
-                ]
-            },
-            'edes-edessegek': {
-                title: 'Édes Édességek',
-                desc: 'Kekszek és csokoládék a nassoláshoz.',
-                items: [
-                    { name: 'Pilóta Keksz 180g', price: '640 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/762/221/049/2290/front_hu.43.400.jpg' },
-                    { name: 'Detki Csokis Cookie 130g', price: '480 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/744/611/8633/front_hu.12.400.jpg' }
-                ]
-            },
-            'sos-edessegek': {
-                title: 'Sós Édességek / Rágcsák',
-                desc: 'Sós finomságok baráti összejövetelekhez.',
-                items: [
-                    { name: 'Chio Sós Burgonya Chips 130g', price: '690 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/720/011/5120/front_hu.30.400.jpg' },
-                    { name: 'Elephant Sós Perec 80g', price: '340 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/642/474/000/2202/front_hu.22.400.jpg' }
-                ]
-            }
-        };
-
-        // Kategória váltó funkció
-        function showCategory(categoryKey) {
-            const data = productsData[categoryKey];
-            if (!data) return;
-
-            document.getElementById('catTitle').innerText = data.title;
-            document.getElementById('catDesc').innerText = data.desc;
-
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-
-            data.items.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                
-                const drsText = item.drs ? '+50 Ft visszaváltási díj' : '&nbsp;';
-
-                card.innerHTML = `
-                    <div class="product-img-container">
-                        <img src="${item.img ? item.img : 'placeholder.jpg'}" alt="${item.name}" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <div>
-                            <div class="product-name">${item.name}</div>
-                            <div class="drs-notice">${drsText}</div>
-                        </div>
-                        <div class="product-price-container">
-                            <div class="product-price">${item.price}</div>
-                            <div class="cart-icon-visual">🛒</div>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Mobilnézetben automatikusan csukja be a menüt választás után
-            if (window.innerWidth < 768) {
-                sidebar.classList.remove('active');
-                body.classList.remove('sidebar-open');
-            }
-        }
-    </script>
-</body>
-</html>
+            'energiaitalok': { title: 'Energiaitalok', desc: 'Pörgesd fel magad!', items: [
+                { name: 'Hell Classic 250ml', price: '499 Ft', drs: true, img: 'Hell.jpg' },
+                { name: 'Hell Black Cherry 250ml', price: '499 Ft', drs: true, img: 'HellCherry.jpg' },
+                { name: 'Hell Lemon Pink-Grapefruit 250ml', price: '499 Ft', drs: true, img: 'HellGrapefruit.jpg' },
+                { name: 'Hell Caffeine Free 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-c
