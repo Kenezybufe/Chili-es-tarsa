@@ -128,13 +128,16 @@
 
         /* Almenü stílusa */
         .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            display: none; /* Alapértelmezetten rejtve, JS kezeli */
             background-color: rgba(15, 23, 42, 0.6);
             list-style: none;
             border-radius: 14px;
             margin-top: 5px;
+            padding: 5px 0;
+        }
+
+        .submenu.show {
+            display: block; /* Ha aktív, megjelenik */
         }
 
         .submenu-btn {
@@ -352,50 +355,41 @@
     </main>
 
     <script>
-        // Oldalsáv Nyitás / Csukás
+        // Oldalsáv Nyitás / Csukás kezelése
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const body = document.body;
 
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Meggátolja, hogy a kattintás azonnal bezárja a menüt
             sidebar.classList.toggle('active');
             body.classList.toggle('sidebar-open');
         });
 
-        // Harmonika menü kezelő
+        // Harmonika menü (Almenük) kezelése
         function setupDropdown(toggleId, submenuId) {
             const toggle = document.getElementById(toggleId);
             const submenu = document.getElementById(submenuId);
 
-            toggle.addEventListener('click', () => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isOpen = toggle.classList.toggle('open');
-                
-                if (isOpen) {
-                    submenu.style.maxHeight = submenu.scrollHeight + 'px';
-                    submenu.addEventListener('transitionend', function functionName(e) {
-                        if (e.propertyName === 'max-height' && toggle.classList.contains('open')) {
-                            submenu.style.maxHeight = 'auto';
-                        }
-                        submenu.removeEventListener('transitionend', functionName);
-                    });
-                } else {
-                    if(submenu.style.maxHeight === 'auto') {
-                        submenu.style.maxHeight = submenu.scrollHeight + 'px';
-                        setTimeout(() => {
-                            submenu.style.maxHeight = '0px';
-                        }, 10);
-                    } else {
-                        submenu.style.maxHeight = '0px';
-                    }
-                }
+                submenu.classList.toggle('show');
             });
         }
 
         setupDropdown('italokToggle', 'italokSubmenu');
         setupDropdown('edessegToggle', 'edessegSubmenu');
 
+        // Ha a menün kívülre kattint a felhasználó, záródjon be
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && e.target !== menuToggle) {
+                sidebar.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            }
+        });
+
         // --- TERMÉK ADATBÁZIS ---
-        // Minden terméknél egységesen csak a kép URL / fájlneve szerepel az "img" mezőben
         const productsData = {
             'energiaitalok': {
                 title: 'Energiaitalok',
@@ -474,10 +468,8 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
-                // DRS megjegyzés kezelése
                 const drsText = item.drs ? '+50 Ft visszaváltási díj' : '&nbsp;';
 
-                // Itt építjük fel a tiszta img taget a megadott forrásból
                 card.innerHTML = `
                     <div class="product-img-container">
                         <img src="${item.img ? item.img : 'placeholder.jpg'}" alt="${item.name}" class="product-img">
@@ -496,6 +488,7 @@
                 grid.appendChild(card);
             });
 
+            // Mobilnézetben automatikusan csukja be a menüt választás után
             if (window.innerWidth < 768) {
                 sidebar.classList.remove('active');
                 body.classList.remove('sidebar-open');
