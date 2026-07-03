@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Csiri és Társa - Termék Katalógus</title>
+    <title>Csiri és Társa - Teljes Katalógus</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; min-height: 100vh; overflow-x: hidden; }
@@ -24,12 +24,12 @@
         .content-container { max-width: 1200px; margin: 0 auto; }
         
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; margin-top: 30px; }
-        .product-card { background: rgba(30, 41, 59, 0.7); border-radius: 20px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .product-card { background: rgba(30, 41, 59, 0.7); border-radius: 20px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; }
         .product-img-container { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 15px; margin-bottom: 15px; }
         .product-img { max-width: 90%; max-height: 90%; object-fit: contain; }
-        .product-name { font-weight: 600; margin-bottom: 5px; }
-        .product-price { color: #ff4a5a; font-weight: 800; font-size: 1.2rem; }
-        .drs-notice { font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px; }
+        .product-name { font-weight: 600; margin-bottom: 5px; flex-grow: 1; }
+        .product-price { color: #ff4a5a; font-weight: 800; font-size: 1.2rem; margin-top: 10px; }
+        .drs-notice { font-size: 0.8rem; color: #94a3b8; }
     </style>
 </head>
 <body>
@@ -66,7 +66,64 @@
     <script>
         const productsData = {
             'energiaitalok': { title: 'Energiaitalok', desc: 'Pörgesd fel magad!', items: [
-                { name: 'Hell Classic 250ml', price: '499 Ft', drs: true, img: 'Hell.jpg' },
-                { name: 'Hell Black Cherry 250ml', price: '499 Ft', drs: true, img: 'HellCherry.jpg' },
-                { name: 'Hell Lemon Pink-Grapefruit 250ml', price: '499 Ft', drs: true, img: 'HellGrapefruit.jpg' },
-                { name: 'Hell Caffeine Free 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-c
+                { name: 'Hell Classic 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2023/09/HELL_CAFFEINE_FREE_250_ED_01.png' },
+                { name: 'Hell Black Cherry 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/05/HELL_Strong_Apple_250_ED-cutout-cutout.png' },
+                { name: 'Hell Lemon Pink-Grapefruit 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/04/HELL_Strong_RedGrape_250_ED-copy.png' },
+                { name: 'Hell Caffeine Free 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2023/09/HELL_CAFFEINE_FREE_250_ED_01.png' },
+                { name: 'Hell Strong Apple 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/05/HELL_Strong_Apple_250_ED-cutout-cutout.png' },
+                { name: 'Hell Strong Red Grape 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2021/04/HELL_Strong_RedGrape_250_ED-copy.png' },
+                { name: 'Hell Strong Watermelon 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2022/03/HELL_Strong_Watermelon_250_ED_01.png' },
+                { name: 'Hell Focus+ 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2023/05/HELL_Focus_250_ED_01.png' },
+                { name: 'Hell Zero Classic 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/07/HELL_Zero_CLASSIC_2025_HU_PACKSHOTs_2.png' },
+                { name: 'Hell Zero Green Apple 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/01/HELL_GREEN_APPLE_HU_PACKSHOTs_fentrol.png' },
+                { name: 'Hell Zero Berry 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/05/HELL_Zero_BERRY_2025_HU_PACKSHOTs_2.png' },
+                { name: 'Hell Zero White Peach 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2025/05/HELL_Zero_WHITE_PEACH_2025_HU_PACKSHOTs_2.png' },
+                { name: 'Hell Cactus Twist Flavour 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/04/HELL_Carnival_ED_Cactus_Twist_2026_HU_Packshot_01.png' },
+                { name: 'Hell Cotton Candy Flavour 250ml', price: '499 Ft', drs: true, img: 'https://www.hellenergy.com/wp-content/uploads/2026/04/HELL_Carnival_ED_Cotton_Candy_2026_HU_Packshot_01.png' }
+            ]},
+            'rostos-italok': { title: 'Rostos Italok', desc: 'Valódi gyümölcs.', items: [
+                { name: 'Toma Alma 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2023/04/toma_alma.jpg?fit=800%2C800&ssl=1' },
+                { name: 'Toma Narancsnektár 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2025/04/toma-narancs.jpg?fit=800%2C800&ssl=1' },
+                { name: 'Toma Őszibarack 1L', price: '1300 Ft', drs: true, img: 'https://i0.wp.com/drinkworld.hu/wp-content/uploads/2023/04/toma_barack.jpg?fit=800%2C800&ssl=1' },
+                { name: 'Toma Multivitamin 0.5', price: '690 Ft', drs: true, img: '' },
+                { name: 'Toma Narancsnektár 0.5', price: '690 Ft', drs: true, img: '' },
+                { name: 'Toma Meggy-Alma 0.5', price: '690 Ft', drs: true, img: '' },
+                { name: 'Toma Alma 0.5', price: '690 Ft', drs: true, img: '' },
+                { name: 'Toma feketeribizli 0.33', price: '800 Ft', drs: true, img: '' },
+                { name: 'Toma Őszibarack 0.33', price: '800 Ft', drs: true, img: '' }
+            ]},
+            'szensavas-italok': { title: 'Szénsavas Üdítők', desc: 'Frissítő buborékok.', items: [
+                { name: 'Coca-Cola 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
+                { name: 'Pepsi Cola 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                { name: 'Fanta Narancs 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
+            ]},
+            'edes-edessegek': { title: 'Édes Édességek', desc: 'Nassolnivalók.', items: [
+                { name: 'Pilóta Keksz 180g', price: '640 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/762/221/049/2290/front_hu.43.400.jpg' },
+                { name: 'Detki Csokis Cookie 130g', price: '480 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/744/611/8633/front_hu.12.400.jpg' }
+            ]},
+            'sos-edessegek': { title: 'Sós Édességek', desc: 'Sós rágcsák.', items: [
+                { name: 'Chio Sós Chips 130g', price: '690 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/720/011/5120/front_hu.30.400.jpg' },
+                { name: 'Elephant Sós Perec 80g', price: '340 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/642/474/000/2202/front_hu.22.400.jpg' }
+            ]}
+        };
+
+        function showCategory(key) {
+            const data = productsData[key];
+            document.getElementById('catTitle').innerText = data.title;
+            document.getElementById('catDesc').innerText = data.desc;
+            document.getElementById('productGrid').innerHTML = data.items.map(item => `
+                <div class="product-card">
+                    <div class="product-img-container"><img src="${item.img || 'placeholder.jpg'}" class="product-img"></div>
+                    <div class="product-name">${item.name}</div>
+                    <div class="drs-notice">${item.drs ? '+50 Ft visszaváltási díj' : '&nbsp;'}</div>
+                    <div class="product-price">${item.price}</div>
+                </div>
+            `).join('');
+            document.getElementById('sidebar').classList.remove('active');
+        }
+
+        function toggleSubmenu(id) { document.getElementById(id).classList.toggle('show'); }
+        document.getElementById('menuToggle').onclick = () => document.getElementById('sidebar').classList.toggle('active');
+    </script>
+</body>
+</html>
