@@ -12,7 +12,7 @@
         .menu-toggle-btn { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border: none; color: white; padding: 10px 24px; border-radius: 50px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 10px; transition: transform 0.2s; }
         .menu-toggle-btn:hover { transform: scale(1.05); }
 
-        .sidebar { position: fixed; top: 70px; left: -320px; width: 320px; height: calc(100vh - 70px); background: rgba(30, 41, 59, 0.95); transition: 0.3s; padding: 20px; z-index: 99; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.05); }
+        .sidebar { position: fixed; top: 70px; left: -320px; width: 320px; height: calc(100vh - 70px); background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(12px); transition: 0.3s; padding: 20px; z-index: 99; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.05); }
         .sidebar.active { left: 0; }
         .sidebar::-webkit-scrollbar { width: 6px; }
         .sidebar::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.5); border-radius: 10px; }
@@ -71,7 +71,7 @@
         <ul class="submenu show" id="italokSubmenu">
             <li><button class="submenu-btn" onclick="showCategory('energiaitalok')">• Energiaitalok</button></li>
             <li><button class="submenu-btn" onclick="showCategory('rostos-italok')">• Rostos italok</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('szensavas-italok')">• Szénsavas üdítők</button></li>
+            <li><button class="submenu-btn" onclick="showCategory('uditok')">• Üdítők</button></li>
         </ul>
         <button class="menu-btn" onclick="toggleSubmenu('edessegSubmenu')">🍬 Édességek ▼</button>
         <ul class="submenu show" id="edessegSubmenu">
@@ -97,13 +97,13 @@
                 'Hell': '⚡',
                 'Monster': '👹',
                 'Red Bull': '🐂',
+                'Coca-Cola': '🥤',
+                'Pepsi': '🥤',
+                'Sprite': '💚',
                 'Toma': '🍎',
                 'Sió': '🧃',
                 'Szobi': '🧃',
                 'Topjoy': '🧃',
-                'Coca-Cola': '🥤',
-                'Pepsi': '🥤',
-                'Fanta': '🍊',
                 'Pilóta': '🍪',
                 'Detki': '🍪',
                 'Chio': '🥨',
@@ -195,17 +195,35 @@
                     }
                 ]
             },
-            'szensavas-italok': { 
-                title: '🥤 Szénsavas Üdítők', 
-                desc: 'Frissítő buborékok.',
+            'uditok': { 
+                title: '🥤 Üdítők', 
+                desc: 'Frissítő buborékok a szomjoltásra!',
                 brands: [
                     {
-                        name: 'Üdítők',
-                        icon: '🥤',
+                        name: 'Coca-Cola',
+                        icon: '❤️',
                         items: [
                             { name: 'Coca-Cola 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
+                            { name: 'Coca-Cola Zero 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' }
+                        ]
+                    },
+                    {
+                        name: 'Pepsi',
+                        icon: '💙',
+                        items: [
                             { name: 'Pepsi Cola 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
-                            { name: 'Fanta Narancs 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
+                            { name: 'Pepsi Zero 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                            { name: 'Pepsi Zero Dobozos 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                            { name: 'Pepsi Zero Cherry 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                            { name: 'Pepsi Zero Citrom 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' },
+                            { name: 'Pepsi Citrom 0.5L', price: '430 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/590/049/702/3358/front_pl.68.400.jpg' }
+                        ]
+                    },
+                    {
+                        name: 'Sprite',
+                        icon: '💚',
+                        items: [
+                            { name: 'Sprite Zero 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/011/5287/front_de.63.400.jpg' }
                         ]
                     }
                 ]
