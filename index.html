@@ -253,22 +253,24 @@
         
         .logo-container { 
             text-align: center; 
-            margin-bottom: 30px;
+            margin-top: 10px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .logo-container.small {
             text-align: left;
+            margin-top: 0;
             margin-bottom: 16px;
         }
 
         .logo-hero { 
-            max-width: 400px;
+            max-width: 450px;
             border-radius: 24px; 
             box-shadow: 0 20px 60px rgba(13, 78, 143, 0.15);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             display: block;
             margin: 0 auto;
+            cursor: pointer;
         }
 
         .logo-container.small .logo-hero {
@@ -286,13 +288,13 @@
         }
         
         .category-title { 
-            font-size: 3rem; 
+            font-size: 3.2rem; 
             font-weight: 900; 
             background: linear-gradient(135deg, #1a5bb5 0%, #7c3aed 40%, #db2777 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 4px; 
+            margin-bottom: 6px; 
             letter-spacing: -1px;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -301,12 +303,13 @@
         .category-title.left {
             text-align: left;
             font-size: 2rem;
+            margin-bottom: 2px;
         }
 
         .category-desc { 
             color: #2c4c73; 
-            font-size: 1.1rem; 
-            margin-bottom: 30px; 
+            font-size: 1.15rem; 
+            margin-bottom: 20px; 
             font-weight: 400;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -315,7 +318,7 @@
         .category-desc.left {
             text-align: left;
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         
         .brand-section { 
@@ -483,62 +486,19 @@
             text-transform: uppercase;
         }
 
-        /* Kezdőoldal - középre rendezés */
-        .welcome-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-        }
-
-        .category-layout {
-            display: block;
-        }
-
-        /* Header kisméretű logóhoz */
-        .mini-logo-header {
-            display: none;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 8px;
-        }
-
-        .mini-logo-header.show {
-            display: flex;
-        }
-
-        .mini-logo-header img {
-            max-width: 60px;
-            border-radius: 14px;
-            box-shadow: 0 4px 16px rgba(13, 78, 143, 0.1);
-        }
-
-        .mini-logo-header .mini-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #0b1a2e;
-        }
-
-        .mini-logo-header .mini-desc {
-            font-size: 0.85rem;
-            color: #2c4c73;
-        }
-
         @media (max-width: 768px) {
             .header { padding: 0 20px; }
             .header-brand { font-size: 1rem; }
             .sidebar { width: 300px; left: -300px; }
             .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-            .category-title { font-size: 2rem; }
+            .category-title { font-size: 2.2rem; }
             .category-title.left { font-size: 1.5rem; }
             .main-content { padding: 24px 16px; }
             .brand-title { font-size: 1.2rem; }
             .menu-toggle-btn { padding: 8px 16px; font-size: 0.8rem; }
             .glow-orb-1, .glow-orb-2, .glow-orb-3 { display: none; }
-            .logo-hero { max-width: 280px; }
+            .logo-hero { max-width: 320px; }
             .logo-container.small .logo-hero { max-width: 60px; }
-            .mini-logo-header img { max-width: 48px; }
         }
 
         @media (max-width: 480px) {
@@ -547,9 +507,9 @@
             .product-img-container { height: 140px; }
             .product-name { font-size: 0.8rem; }
             .product-price { font-size: 1.1rem; }
-            .logo-hero { max-width: 200px; }
+            .logo-hero { max-width: 220px; }
             .logo-container.small .logo-hero { max-width: 50px; }
-            .category-title { font-size: 1.6rem; }
+            .category-title { font-size: 1.8rem; }
             .category-title.left { font-size: 1.3rem; }
         }
     </style>
@@ -588,14 +548,14 @@
 
     <main class="main-content">
         <div class="content-container">
-            <!-- Logó konténer (dinamikusan változik) -->
+            <!-- Cím és leírás (a logó FÖLÖTT) -->
+            <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
+            <p id="catDesc" class="category-desc">Kérlek, válassz a kategória menükből!</p>
+            
+            <!-- Logó konténer (a szöveg ALATT) -->
             <div class="logo-container" id="logoContainer">
                 <img src="Logo.jpg" alt="Csiri és Társa Logo" class="logo-hero" id="logoImage" onerror="this.style.display='none'">
             </div>
-            
-            <!-- Cím és leírás -->
-            <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
-            <p id="catDesc" class="category-desc">Kérlek, válassz a bal oldali menüből.</p>
             
             <!-- Termék konténer -->
             <div id="productContainer"></div>
@@ -914,7 +874,6 @@
             const titleEl = document.getElementById('catTitle');
             const descEl = document.getElementById('catDesc');
             const logoContainer = document.getElementById('logoContainer');
-            const logoImg = document.getElementById('logoImage');
             
             // Átváltás kategória nézetre
             isHome = false;
@@ -965,7 +924,7 @@
             titleEl.innerText = 'Üdvözöllek!';
             
             descEl.classList.remove('left');
-            descEl.innerText = 'Kérlek, válassz a bal oldali menüből.';
+            descEl.innerText = 'Kérlek, válassz a kategória menükből!';
             
             // Termékek törlése
             document.getElementById('productContainer').innerHTML = '';
