@@ -10,14 +10,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
-            background: #0a0a0f;
-            color: #f8fafc; 
+            background: #e6f0fa; /* Világos kék háttér */
+            color: #0b1a2e; 
             min-height: 100vh; 
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animált háttér - csillagok */
+        /* Animált háttér - finom fénypontok */
         body::before {
             content: '';
             position: fixed;
@@ -26,35 +26,35 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(2px 2px at 50px 160px, #ddd, transparent),
-                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.6), transparent),
-                radial-gradient(2px 2px at 130px 80px, #fff, transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 300px 200px, #fff, transparent),
-                radial-gradient(1px 1px at 400px 100px, #eee, transparent),
-                radial-gradient(1px 1px at 500px 300px, #fff, transparent),
-                radial-gradient(1px 1px at 600px 150px, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1px 1px at 700px 400px, #ddd, transparent),
-                radial-gradient(1px 1px at 800px 250px, #fff, transparent),
-                radial-gradient(1px 1px at 900px 350px, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 1000px 180px, #eee, transparent),
-                radial-gradient(1px 1px at 1100px 420px, #fff, transparent);
+                radial-gradient(2px 2px at 20px 30px, rgba(13, 78, 143, 0.15), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(13, 78, 143, 0.1), transparent),
+                radial-gradient(2px 2px at 50px 160px, rgba(13, 78, 143, 0.2), transparent),
+                radial-gradient(2px 2px at 90px 40px, rgba(13, 78, 143, 0.1), transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(13, 78, 143, 0.15), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(13, 78, 143, 0.12), transparent),
+                radial-gradient(1px 1px at 300px 200px, rgba(13, 78, 143, 0.2), transparent),
+                radial-gradient(1px 1px at 400px 100px, rgba(13, 78, 143, 0.1), transparent),
+                radial-gradient(1px 1px at 500px 300px, rgba(13, 78, 143, 0.15), transparent),
+                radial-gradient(1px 1px at 600px 150px, rgba(13, 78, 143, 0.1), transparent),
+                radial-gradient(1px 1px at 700px 400px, rgba(13, 78, 143, 0.12), transparent),
+                radial-gradient(1px 1px at 800px 250px, rgba(13, 78, 143, 0.2), transparent),
+                radial-gradient(1px 1px at 900px 350px, rgba(13, 78, 143, 0.1), transparent),
+                radial-gradient(1px 1px at 1000px 180px, rgba(13, 78, 143, 0.15), transparent),
+                radial-gradient(1px 1px at 1100px 420px, rgba(13, 78, 143, 0.12), transparent);
             background-size: 200px 200px;
             background-repeat: repeat;
-            opacity: 0.3;
+            opacity: 0.6;
             pointer-events: none;
             z-index: 0;
-            animation: twinkle 4s ease-in-out infinite alternate;
+            animation: twinkle 5s ease-in-out infinite alternate;
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 0.5; }
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
 
-        /* Glow orbok */
+        /* Glow orbok - világos kékhez igazítva */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
@@ -67,7 +67,7 @@
         .glow-orb-1 {
             width: 500px;
             height: 500px;
-            background: rgba(59, 130, 246, 0.08);
+            background: rgba(59, 130, 246, 0.15);
             top: -100px;
             right: -100px;
         }
@@ -75,7 +75,7 @@
         .glow-orb-2 {
             width: 400px;
             height: 400px;
-            background: rgba(139, 92, 246, 0.06);
+            background: rgba(139, 92, 246, 0.1);
             bottom: -50px;
             left: -50px;
             animation-delay: -3s;
@@ -84,7 +84,7 @@
         .glow-orb-3 {
             width: 300px;
             height: 300px;
-            background: rgba(236, 72, 153, 0.05);
+            background: rgba(236, 72, 153, 0.08);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -96,14 +96,14 @@
             100% { transform: translate(30px, -30px) scale(1.1); }
         }
 
-        /* HEADER */
+        /* HEADER - világos kékhez igazítva */
         .header { 
             position: fixed; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 72px; 
-            background: rgba(10, 10, 15, 0.85);
+            background: rgba(230, 240, 250, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex; 
@@ -111,7 +111,7 @@
             justify-content: space-between;
             padding: 0 40px; 
             z-index: 100; 
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(13, 78, 143, 0.08);
         }
 
         .header-brand {
@@ -120,7 +120,7 @@
             gap: 12px;
             font-weight: 800;
             font-size: 1.3rem;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            background: linear-gradient(135deg, #1a5bb5, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
@@ -129,12 +129,13 @@
         .header-brand span {
             font-size: 1.6rem;
             -webkit-text-fill-color: initial;
+            color: #1a5bb5;
         }
 
         .menu-toggle-btn { 
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: white; 
+            background: rgba(13, 78, 143, 0.08);
+            border: 1px solid rgba(13, 78, 143, 0.12);
+            color: #0b1a2e; 
             padding: 10px 24px; 
             border-radius: 50px; 
             cursor: pointer; 
@@ -148,26 +149,26 @@
         }
 
         .menu-toggle-btn:hover { 
-            background: rgba(255,255,255,0.12);
+            background: rgba(13, 78, 143, 0.15);
             transform: scale(1.03);
-            border-color: rgba(255,255,255,0.15);
+            border-color: rgba(13, 78, 143, 0.2);
         }
 
-        /* SIDEBAR */
+        /* SIDEBAR - világos kékhez igazítva */
         .sidebar { 
             position: fixed; 
             top: 72px; 
             left: -340px; 
             width: 340px; 
             height: calc(100vh - 72px); 
-            background: rgba(10, 10, 15, 0.92);
+            background: rgba(240, 248, 255, 0.92);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             padding: 24px 20px; 
             z-index: 99; 
             overflow-y: auto; 
-            border-right: 1px solid rgba(255,255,255,0.04);
+            border-right: 1px solid rgba(13, 78, 143, 0.08);
         }
 
         .sidebar.active { left: 0; }
@@ -179,9 +180,9 @@
         .menu-btn { 
             width: 100%; 
             padding: 14px 18px; 
-            background: rgba(255,255,255,0.03); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            color: #e2e8f0; 
+            background: rgba(13, 78, 143, 0.04); 
+            border: 1px solid rgba(13, 78, 143, 0.06); 
+            color: #0b1a2e; 
             border-radius: 12px; 
             margin-bottom: 8px; 
             cursor: pointer; 
@@ -192,8 +193,8 @@
         }
 
         .menu-btn:hover { 
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(13, 78, 143, 0.08);
+            border-color: rgba(13, 78, 143, 0.12);
             transform: translateX(4px);
         }
         
@@ -201,7 +202,7 @@
             display: none; 
             padding-left: 16px; 
             margin-bottom: 10px; 
-            border-left: 2px solid rgba(255,255,255,0.05);
+            border-left: 2px solid rgba(13, 78, 143, 0.08);
             margin-left: 8px;
         }
 
@@ -212,7 +213,7 @@
             padding: 10px 14px; 
             background: none; 
             border: none; 
-            color: #94a3b8; 
+            color: #1e3a5f; 
             cursor: pointer; 
             text-align: left; 
             transition: all 0.3s ease;
@@ -221,8 +222,8 @@
         }
 
         .submenu-btn:hover { 
-            color: #60a5fa; 
-            background: rgba(59, 130, 246, 0.06);
+            color: #1a5bb5; 
+            background: rgba(59, 130, 246, 0.08);
             padding-left: 18px;
         }
 
@@ -231,14 +232,14 @@
             display: inline-block;
             width: 6px;
             height: 6px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(13, 78, 143, 0.15);
             border-radius: 50%;
             margin-right: 10px;
             transition: all 0.3s ease;
         }
 
         .submenu-btn:hover::before {
-            background: #60a5fa;
+            background: #1a5bb5;
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
@@ -263,7 +264,7 @@
         .logo-hero { 
             max-width: 220px; 
             border-radius: 24px; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 60px rgba(13, 78, 143, 0.15);
             transition: transform 0.5s ease;
         }
 
@@ -274,7 +275,7 @@
         .category-title { 
             font-size: 3rem; 
             font-weight: 900; 
-            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #f472b6 100%);
+            background: linear-gradient(135deg, #1a5bb5 0%, #7c3aed 40%, #db2777 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -283,7 +284,7 @@
         }
 
         .category-desc { 
-            color: #64748b; 
+            color: #2c4c73; 
             font-size: 1.1rem; 
             margin-bottom: 30px; 
             font-weight: 400;
@@ -302,10 +303,10 @@
         .brand-title { 
             font-size: 1.5rem; 
             font-weight: 700; 
-            color: #e2e8f0; 
+            color: #0b1a2e; 
             margin-bottom: 18px; 
             padding-bottom: 12px; 
-            border-bottom: 2px solid rgba(255,255,255,0.04); 
+            border-bottom: 2px solid rgba(13, 78, 143, 0.08); 
             display: flex; 
             align-items: center; 
             gap: 14px; 
@@ -319,9 +320,9 @@
         .brand-title .brand-count {
             font-size: 0.8rem;
             font-weight: 400;
-            color: #64748b;
+            color: #2c4c73;
             margin-left: auto;
-            background: rgba(255,255,255,0.04);
+            background: rgba(13, 78, 143, 0.06);
             padding: 2px 14px;
             border-radius: 50px;
         }
@@ -333,12 +334,12 @@
         }
 
         .product-card { 
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 20px; 
             padding: 20px; 
-            border: 1px solid rgba(255,255,255,0.04); 
+            border: 1px solid rgba(13, 78, 143, 0.06); 
             display: flex; 
             flex-direction: column; 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -353,7 +354,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), rgba(139, 92, 246, 0.02));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), rgba(139, 92, 246, 0.04));
             opacity: 0;
             transition: opacity 0.4s ease;
             border-radius: 20px;
@@ -361,8 +362,9 @@
 
         .product-card:hover { 
             transform: translateY(-6px); 
-            border-color: rgba(255,255,255,0.08);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            border-color: rgba(13, 78, 143, 0.12);
+            box-shadow: 0 20px 50px rgba(13, 78, 143, 0.08);
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .product-card:hover::before {
@@ -375,7 +377,7 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            background: rgba(255,255,255,0.05);
+            background: rgba(13, 78, 143, 0.04);
             border-radius: 14px; 
             margin-bottom: 16px; 
             overflow: hidden;
@@ -396,14 +398,14 @@
         .product-img-placeholder { 
             width: 60px; 
             height: 60px; 
-            background: rgba(255,255,255,0.04); 
+            background: rgba(13, 78, 143, 0.06); 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-size: 2rem; 
-            color: #475569; 
-            border: 2px dashed rgba(255,255,255,0.06);
+            color: #2c4c73; 
+            border: 2px dashed rgba(13, 78, 143, 0.1);
         }
         
         .product-name { 
@@ -412,11 +414,11 @@
             flex-grow: 1; 
             font-size: 0.92rem; 
             line-height: 1.4;
-            color: #e2e8f0;
+            color: #0b1a2e;
         }
 
         .product-price { 
-            color: #f472b6; 
+            color: #db2777; 
             font-weight: 800; 
             font-size: 1.25rem; 
             margin-top: 8px;
@@ -425,13 +427,13 @@
 
         .drs-notice { 
             font-size: 0.75rem; 
-            color: #475569; 
+            color: #2c4c73; 
             min-height: 20px; 
             font-weight: 400;
         }
 
         .drs-notice.drs { 
-            color: #fbbf24; 
+            color: #b45309; 
         }
 
         .drs-notice.drs::before {
@@ -442,13 +444,13 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: rgba(251, 191, 36, 0.12);
-            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.15);
+            color: #b45309;
             font-size: 0.6rem;
             font-weight: 600;
             padding: 4px 10px;
             border-radius: 50px;
-            border: 1px solid rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.15);
             letter-spacing: 0.3px;
             text-transform: uppercase;
         }
