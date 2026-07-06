@@ -10,14 +10,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
-            background: #e6f0fa; /* Világos kék háttér */
+            background: #e6f0fa;
             color: #0b1a2e; 
             min-height: 100vh; 
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animált háttér - finom fénypontok */
         body::before {
             content: '';
             position: fixed;
@@ -54,7 +53,6 @@
             100% { opacity: 0.7; }
         }
 
-        /* Glow orbok - világos kékhez igazítva */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
@@ -96,7 +94,6 @@
             100% { transform: translate(30px, -30px) scale(1.1); }
         }
 
-        /* HEADER - világos kékhez igazítva */
         .header { 
             position: fixed; 
             top: 0; 
@@ -154,7 +151,6 @@
             border-color: rgba(13, 78, 143, 0.2);
         }
 
-        /* SIDEBAR - világos kékhez igazítva */
         .sidebar { 
             position: fixed; 
             top: 72px; 
@@ -243,7 +239,6 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* MAIN CONTENT */
         .main-content { 
             margin-top: 72px; 
             padding: 50px 40px; 
@@ -258,18 +253,36 @@
         
         .logo-container { 
             text-align: center; 
-            margin-bottom: 40px; 
+            margin-bottom: 30px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-container.small {
+            text-align: left;
+            margin-bottom: 16px;
         }
 
         .logo-hero { 
-            max-width: 220px; 
+            max-width: 400px;
             border-radius: 24px; 
             box-shadow: 0 20px 60px rgba(13, 78, 143, 0.15);
-            transition: transform 0.5s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-container.small .logo-hero {
+            max-width: 80px;
+            box-shadow: 0 8px 30px rgba(13, 78, 143, 0.1);
+            margin: 0;
         }
 
         .logo-hero:hover {
             transform: scale(1.02);
+        }
+
+        .logo-container.small .logo-hero:hover {
+            transform: scale(1.05);
         }
         
         .category-title { 
@@ -281,6 +294,13 @@
             background-clip: text;
             margin-bottom: 4px; 
             letter-spacing: -1px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-title.left {
+            text-align: left;
+            font-size: 2rem;
         }
 
         .category-desc { 
@@ -288,6 +308,14 @@
             font-size: 1.1rem; 
             margin-bottom: 30px; 
             font-weight: 400;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-desc.left {
+            text-align: left;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
         }
         
         .brand-section { 
@@ -455,16 +483,62 @@
             text-transform: uppercase;
         }
 
+        /* Kezdőoldal - középre rendezés */
+        .welcome-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .category-layout {
+            display: block;
+        }
+
+        /* Header kisméretű logóhoz */
+        .mini-logo-header {
+            display: none;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+
+        .mini-logo-header.show {
+            display: flex;
+        }
+
+        .mini-logo-header img {
+            max-width: 60px;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(13, 78, 143, 0.1);
+        }
+
+        .mini-logo-header .mini-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b1a2e;
+        }
+
+        .mini-logo-header .mini-desc {
+            font-size: 0.85rem;
+            color: #2c4c73;
+        }
+
         @media (max-width: 768px) {
             .header { padding: 0 20px; }
             .header-brand { font-size: 1rem; }
             .sidebar { width: 300px; left: -300px; }
             .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
             .category-title { font-size: 2rem; }
+            .category-title.left { font-size: 1.5rem; }
             .main-content { padding: 24px 16px; }
             .brand-title { font-size: 1.2rem; }
             .menu-toggle-btn { padding: 8px 16px; font-size: 0.8rem; }
             .glow-orb-1, .glow-orb-2, .glow-orb-3 { display: none; }
+            .logo-hero { max-width: 280px; }
+            .logo-container.small .logo-hero { max-width: 60px; }
+            .mini-logo-header img { max-width: 48px; }
         }
 
         @media (max-width: 480px) {
@@ -473,6 +547,10 @@
             .product-img-container { height: 140px; }
             .product-name { font-size: 0.8rem; }
             .product-price { font-size: 1.1rem; }
+            .logo-hero { max-width: 200px; }
+            .logo-container.small .logo-hero { max-width: 50px; }
+            .category-title { font-size: 1.6rem; }
+            .category-title.left { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -510,16 +588,24 @@
 
     <main class="main-content">
         <div class="content-container">
-            <div class="logo-container">
-                <img src="Logo.jpg" alt="Csiri és Társa Logo" class="logo-hero" onerror="this.style.display='none'">
+            <!-- Logó konténer (dinamikusan változik) -->
+            <div class="logo-container" id="logoContainer">
+                <img src="Logo.jpg" alt="Csiri és Társa Logo" class="logo-hero" id="logoImage" onerror="this.style.display='none'">
             </div>
+            
+            <!-- Cím és leírás -->
             <h1 id="catTitle" class="category-title">Üdvözöllek!</h1>
             <p id="catDesc" class="category-desc">Kérlek, válassz a bal oldali menüből.</p>
+            
+            <!-- Termék konténer -->
             <div id="productContainer"></div>
         </div>
     </main>
 
     <script>
+        // Állapot: kezdőoldalon vagyunk-e
+        let isHome = true;
+
         function getPlaceholder(name) {
             const emojis = {
                 'Hell': '⚡',
@@ -825,9 +911,25 @@
 
         function showCategory(key) {
             const data = productsData[key];
-            document.getElementById('catTitle').innerText = data.title;
-            document.getElementById('catDesc').innerText = data.desc;
+            const titleEl = document.getElementById('catTitle');
+            const descEl = document.getElementById('catDesc');
+            const logoContainer = document.getElementById('logoContainer');
+            const logoImg = document.getElementById('logoImage');
             
+            // Átváltás kategória nézetre
+            isHome = false;
+            
+            // Logó kicsinyítése és balra igazítás
+            logoContainer.classList.add('small');
+            
+            // Cím balra igazítása és kisebb
+            titleEl.classList.add('left');
+            titleEl.innerText = data.title;
+            
+            descEl.classList.add('left');
+            descEl.innerText = data.desc;
+            
+            // Termékek renderelése
             let html = '';
             data.brands.forEach(brand => {
                 html += `
@@ -848,6 +950,34 @@
             document.getElementById('sidebar').classList.remove('active');
         }
 
+        // Kezdőoldal visszaállítása (ha a felhasználó a logóra kattint)
+        function goHome() {
+            isHome = true;
+            const titleEl = document.getElementById('catTitle');
+            const descEl = document.getElementById('catDesc');
+            const logoContainer = document.getElementById('logoContainer');
+            
+            // Logó nagyra
+            logoContainer.classList.remove('small');
+            
+            // Cím középre és nagyra
+            titleEl.classList.remove('left');
+            titleEl.innerText = 'Üdvözöllek!';
+            
+            descEl.classList.remove('left');
+            descEl.innerText = 'Kérlek, válassz a bal oldali menüből.';
+            
+            // Termékek törlése
+            document.getElementById('productContainer').innerHTML = '';
+        }
+
+        // Logóra kattintás -> vissza a kezdőoldalra
+        document.getElementById('logoImage').addEventListener('click', function(e) {
+            if (!isHome) {
+                goHome();
+            }
+        });
+
         function toggleSubmenu(id) { 
             document.getElementById(id).classList.toggle('show'); 
         }
@@ -863,6 +993,9 @@
                 sidebar.classList.remove('active');
             }
         });
+
+        // Kezdőoldal állapot beállítása
+        goHome();
     </script>
 </body>
 </html>
