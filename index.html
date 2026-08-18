@@ -66,7 +66,6 @@
             transition: background 0.3s ease, color 0.2s ease;
         }
 
-        /* csillogó háttérpontok (mindkét téma) */
         body::before {
             content: '';
             position: fixed;
@@ -103,7 +102,6 @@
             100% { opacity: 0.7; }
         }
 
-        /* izzó gömbök */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
@@ -144,7 +142,6 @@
             100% { transform: translate(30px, -30px) scale(1.1); }
         }
 
-        /* —— HEADER —— */
         .header {
             position: fixed;
             top: 0;
@@ -211,7 +208,6 @@
         }
         .menu-toggle-btn:active { transform: scale(0.97); }
 
-        /* ⚙️ settings gomb */
         .settings-btn {
             background: rgba(13, 78, 143, 0.08);
             border: 1px solid var(--border-header);
@@ -234,7 +230,6 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
 
-        /* —— SIDEBAR —— */
         .sidebar {
             position: fixed;
             top: 72px;
@@ -314,7 +309,6 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* —— MAIN —— */
         .main-content {
             margin-top: 72px;
             padding: 50px 40px;
@@ -535,7 +529,6 @@
             text-transform: uppercase;
         }
 
-        /* —— SETTINGS OVERLAY —— */
         .settings-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -626,7 +619,6 @@
             transform: scale(1.02);
         }
 
-        /* —— reszponzív —— */
         @media (max-width: 768px) {
             .header { padding: 0 20px; }
             .header-brand { font-size: 1rem; }
@@ -700,7 +692,6 @@
         </div>
     </main>
 
-    <!-- Settings overlay -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-panel">
             <h2><span>⚙️</span> Beállítások</h2>
@@ -720,7 +711,7 @@
     </div>
 
     <script>
-        // ----- FRISSÍTETT ADATOK (összes új termékkel, Coca-Cola bővítve) -----
+        // ----- FRISSÍTETT ADATOK (minden új termékkel) -----
         const productsData = { 
             'energiaitalok': { 
                 title: { hu: '⚡ Energiaitalok', en: '⚡ Energy Drinks' },
@@ -761,6 +752,9 @@
                         icon: '🐂', 
                         items: [
                             { name: 'Red Bull 250ml', price: '590 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/900/249/020/0049/front_en.35.400.jpg' },
+                            { name: 'Red Bull Eper-Őszibarack 250ml', price: '590 Ft', drs: true, img: '' },
+                            { name: 'Red Bull Kókusz 250ml', price: '590 Ft', drs: true, img: '' },
+                            { name: 'Red Bull Fehér Barack 250ml', price: '590 Ft', drs: true, img: '' },
                             { name: 'Red Bull Fanyarkás 250ml', price: '590 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/900/249/020/0162/front_en.26.400.jpg' },
                             { name: 'Red Bull Sárga Barack-Eper 250ml', price: '590 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/900/249/020/0193/front_en.28.400.jpg' },
                             { name: 'Red Bull Kókusz-Áfonya 250ml', price: '590 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/900/249/020/0209/front_en.28.400.jpg' }
@@ -790,6 +784,17 @@
                         ]
                     },
                     { 
+                        name: 'Topjoy', 
+                        icon: '🧃', 
+                        items: [
+                            { name: 'Topjoy Kaktusz 330ml', price: '950 Ft', drs: true, img: '' },
+                            { name: 'Topjoy Mangó 330ml', price: '950 Ft', drs: true, img: '' },
+                            { name: 'Topjoy Őszibarack 330ml', price: '950 Ft', drs: true, img: '' },
+                            { name: 'Topjoy Görögdinnye 330ml', price: '950 Ft', drs: true, img: '' },
+                            { name: 'Topjoy Paradicsom 1L', price: '950 Ft', drs: false, img: '' }
+                        ]
+                    },
+                    { 
                         name: 'Sió', 
                         icon: '🧃', 
                         items: [
@@ -810,14 +815,33 @@
                         ]
                     },
                     { 
-                        name: 'Topjoy', 
+                        name: 'Márka rostos', 
                         icon: '🧃', 
                         items: [
-                            { name: 'Topjoy Paradicsom 1L', price: '950 Ft', drs: false, img: '' },
-                            { name: 'Topjoy Kaktusz 330ml', price: '950 Ft', drs: true, img: '' },
-                            { name: 'Topjoy Görögdinnye 330ml', price: '950 Ft', drs: true, img: '' },
-                            { name: 'Topjoy Őszibarack 330ml', price: '950 Ft', drs: true, img: '' },
-                            { name: 'Topjoy Mangó 330ml', price: '950 Ft', drs: true, img: '' }
+                            { name: 'Márka Őszibarack 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Márka Alma-Körte 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Márka Multivitamin 1.5L', price: '950 Ft', drs: false, img: '' }
+                        ]
+                    },
+                    { 
+                        name: 'Apenta VitaMix', 
+                        icon: '🧃', 
+                        items: [
+                            { name: 'Apenta VitaMix Eper-Vörösáfonya 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta VitaMix Citrom-Maracuja 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta VitaMix Alma-Mangó 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta VitaMix Körte-Rebarbara 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta VitaMix Áfonya-Levendula 1.5L', price: '950 Ft', drs: false, img: '' }
+                        ]
+                    },
+                    { 
+                        name: 'Apenta', 
+                        icon: '🧃', 
+                        items: [
+                            { name: 'Apenta Szőlő 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta Narancs 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta Eper 1.5L', price: '950 Ft', drs: false, img: '' },
+                            { name: 'Apenta Málna 1.5L', price: '950 Ft', drs: false, img: '' }
                         ]
                     }
                 ]
@@ -831,12 +855,14 @@
                         icon: '❤️', 
                         items: [
                             { name: 'Coca-Cola 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
-                            { name: 'Coca-Cola Zero 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
                             { name: 'Coca-Cola Cherry 0.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Coca-Cola Zero 0.5L', price: '450 Ft', drs: true, img: 'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_fr.536.400.jpg' },
                             { name: 'Coca-Cola 1L', price: '450 Ft', drs: true, img: '' },
                             { name: 'Coca-Cola Zero 1L', price: '450 Ft', drs: true, img: '' },
                             { name: 'Coca-Cola 1.5L', price: '450 Ft', drs: true, img: '' },
-                            { name: 'Coca-Cola Zero 1.5L', price: '450 Ft', drs: true, img: '' }
+                            { name: 'Coca-Cola Zero 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Coca-Cola 1.75L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Coca-Cola Zero 1.75L', price: '450 Ft', drs: true, img: '' }
                         ]
                     },
                     { 
@@ -900,6 +926,14 @@
                         ]
                     },
                     { 
+                        name: 'Márka tea', 
+                        icon: '🧋', 
+                        items: [
+                            { name: 'Márka Citrom 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Barack 1.5L', price: '450 Ft', drs: true, img: '' }
+                        ]
+                    },
+                    { 
                         name: 'Egyéb üdítők', 
                         icon: '🥤', 
                         items: [
@@ -912,7 +946,17 @@
                             { name: 'Seven Up 0.5L', price: '430 Ft', drs: true, img: '' },
                             { name: 'Mountain Dew 0.5L', price: '450 Ft', drs: true, img: '' },
                             { name: 'Mirinda 1L', price: '430 Ft', drs: true, img: '' },
-                            { name: 'Canada Dry 1.5L', price: '450 Ft', drs: true, img: '' }
+                            { name: 'Canada Dry 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Mirror Citrom 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Mirror Bodza 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Mirror Málna 1.5L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Meggy 2L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Szőlő 2L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Narancs 2L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Márka Limonádé 2L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Soma Cola 3L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Soma Kivi 3L', price: '450 Ft', drs: true, img: '' },
+                            { name: 'Soma Narancs 3L', price: '450 Ft', drs: true, img: '' }
                         ]
                     }
                 ]
@@ -959,6 +1003,31 @@
                             { name: 'Emese Mentes ásványvíz 0.5L', price: '230 Ft', drs: true, img: '' },
                             { name: 'Emese Szénsavas ásványvíz 1.5L', price: '330 Ft', drs: true, img: '' },
                             { name: 'Emese Mentes ásványvíz 1.5L', price: '330 Ft', drs: true, img: '' }
+                        ]
+                    },
+                    { 
+                        name: 'Apenta+', 
+                        icon: '💧', 
+                        items: [
+                            { name: 'Apenta+ Zöld 0.75L', price: '350 Ft', drs: true, img: '' },
+                            { name: 'Apenta+ Collagen 0.75L', price: '350 Ft', drs: true, img: '' },
+                            { name: 'Apenta+ Anti-stress 0.75L', price: '350 Ft', drs: true, img: '' },
+                            { name: 'Apenta+ Feketeribizli 0.75L', price: '350 Ft', drs: true, img: '' }
+                        ]
+                    },
+                    { 
+                        name: 'Jana', 
+                        icon: '💧', 
+                        items: [
+                            { name: 'Jana 1.5L', price: '350 Ft', drs: true, img: '' }
+                        ]
+                    },
+                    { 
+                        name: 'Kubu', 
+                        icon: '💧', 
+                        items: [
+                            { name: 'Kubu 1.5L', price: '350 Ft', drs: true, img: '' },
+                            { name: 'Kubu VíZ 1.5L', price: '350 Ft', drs: true, img: '' }
                         ]
                     }
                 ]
@@ -1029,7 +1098,7 @@
 
         // ----- segédletek -----
         function getPlaceholder(name) {
-            const emojis = { 'Hell':'⚡','Monster':'👹','Red Bull':'🐂','Coca-Cola':'🥤','Pepsi':'🥤','Sprite':'💚','Lipton':'🧋','Schweppes':'🍋','Canada Dry':'🥤','Mountain Dew':'💚','Mirinda':'🍊','Szentkirályi':'💧','Emese':'💧','Toma':'🍎','Sió':'🧃','Szobi':'🧃','Topjoy':'🧃','Gatorade':'🏃','Pilóta':'🍪','Detki':'🍪','Chio':'🥨','Elephant':'🥨' };
+            const emojis = { 'Hell':'⚡','Monster':'👹','Red Bull':'🐂','Coca-Cola':'🥤','Pepsi':'🥤','Sprite':'💚','Lipton':'🧋','Schweppes':'🍋','Canada Dry':'🥤','Mountain Dew':'💚','Mirinda':'🍊','Szentkirályi':'💧','Emese':'💧','Toma':'🍎','Sió':'🧃','Szobi':'🧃','Topjoy':'🧃','Gatorade':'🏃','Pilóta':'🍪','Detki':'🍪','Chio':'🥨','Elephant':'🥨','Apenta':'💧','Jana':'💧','Kubu':'💧','Soma':'🥤','Márka':'🥤' };
             for (let k in emojis) if (name.includes(k)) return emojis[k];
             return '📦';
         }
@@ -1078,7 +1147,6 @@
             document.getElementById('productContainer').innerHTML = '';
         }
 
-        // ----- MENÜ FRISSÍTÉS NYELV VÁLTÁSKOR -----
         function updateMenuLanguage(lang) {
             const t = menuTranslations[lang] || menuTranslations.hu;
             document.getElementById('menuDrinks').innerHTML = t.drinks;
@@ -1089,7 +1157,6 @@
             t.subSweets.forEach((txt, i) => { if (sweetSubs[i]) sweetSubs[i].innerText = txt; });
         }
 
-        // ----- ESEMÉNYEK -----
         document.getElementById('logoImage').addEventListener('click', function(e) { if (!isHome) goHome(); });
 
         function toggleSubmenu(id) { document.getElementById(id).classList.toggle('show'); }
@@ -1101,7 +1168,6 @@
             if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) sidebar.classList.remove('active');
         });
 
-        // ----- SETTINGS -----
         const settingsOverlay = document.getElementById('settingsOverlay');
         const settingsToggle = document.getElementById('settingsToggle');
         const settingsClose = document.getElementById('settingsClose');
@@ -1115,7 +1181,6 @@
         settingsClose.addEventListener('click', closeSettings);
         settingsOverlay.addEventListener('click', (e) => { if (e.target === settingsOverlay) closeSettings(); });
 
-        // nyelvváltás – frissíti a menüt és a tartalmat
         langSelect.addEventListener('change', function() {
             currentLang = this.value;
             updateMenuLanguage(currentLang);
@@ -1132,15 +1197,12 @@
             }
         });
 
-        // dark mode toggle
         darkModeBtn.addEventListener('click', function() {
             document.body.classList.toggle('dark');
             this.innerText = document.body.classList.contains('dark') ? '☀️ Világos mód' : '🌙 Sötét mód';
         });
 
-        // kezdőoldal
         goHome();
-        // menü alapértelmezett
         updateMenuLanguage('hu');
         langSelect.value = 'hu';
     </script>
