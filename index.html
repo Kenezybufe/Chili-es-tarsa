@@ -671,19 +671,20 @@
     </header>
 
     <nav class="sidebar" id="sidebar">
-        <button class="menu-btn" onclick="toggleSubmenu('italokSubmenu')">🥤 Üdítők ▼</button>
+        <!-- fő kategória gombok id-val a nyelvi frissítéshez -->
+        <button class="menu-btn" id="menuDrinks" onclick="toggleSubmenu('italokSubmenu')">🥤 Üdítők ▼</button>
         <ul class="submenu show" id="italokSubmenu">
-            <li><button class="submenu-btn" onclick="showCategory('energiaitalok')">Energiaitalok</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('rostos-italok')">Rostos italok</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('uditok')">Üdítők</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('jegesteak')">Jeges teák</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('asvanyvizek')">Ásványvizek</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('sportitalok')">Sportitalok</button></li>
+            <li><button class="submenu-btn" data-key="energiaitalok" onclick="showCategory('energiaitalok')">Energiaitalok</button></li>
+            <li><button class="submenu-btn" data-key="rostos-italok" onclick="showCategory('rostos-italok')">Rostos italok</button></li>
+            <li><button class="submenu-btn" data-key="uditok" onclick="showCategory('uditok')">Üdítők</button></li>
+            <li><button class="submenu-btn" data-key="jegesteak" onclick="showCategory('jegesteak')">Jeges teák</button></li>
+            <li><button class="submenu-btn" data-key="asvanyvizek" onclick="showCategory('asvanyvizek')">Ásványvizek</button></li>
+            <li><button class="submenu-btn" data-key="sportitalok" onclick="showCategory('sportitalok')">Sportitalok</button></li>
         </ul>
-        <button class="menu-btn" onclick="toggleSubmenu('edessegSubmenu')">🍬 Édességek ▼</button>
+        <button class="menu-btn" id="menuSweets" onclick="toggleSubmenu('edessegSubmenu')">🍬 Édességek ▼</button>
         <ul class="submenu show" id="edessegSubmenu">
-            <li><button class="submenu-btn" onclick="showCategory('edes-edessegek')">Édes édességek</button></li>
-            <li><button class="submenu-btn" onclick="showCategory('sos-edessegek')">Sós édességek</button></li>
+            <li><button class="submenu-btn" data-key="edes-edessegek" onclick="showCategory('edes-edessegek')">Édes édességek</button></li>
+            <li><button class="submenu-btn" data-key="sos-edessegek" onclick="showCategory('sos-edessegek')">Sós édességek</button></li>
         </ul>
     </nav>
 
@@ -720,8 +721,8 @@
     </div>
 
     <script>
-        // ----- ADATOK (maradnak) -----
-        const productsData = { /* ... teljes adat ... */ 
+        // ----- ADATOK (bővítve a menü fordításokkal is) -----
+        const productsData = { 
             'energiaitalok': { 
                 title: { hu: '⚡ Energiaitalok', en: '⚡ Energy Drinks' },
                 desc: { hu: 'Válaszd ki a kedvenc energiád!', en: 'Pick your favourite energy!' },
@@ -738,6 +739,22 @@
             'sportitalok': { title: { hu: '🏃 Sportitalok', en: '🏃 Sports Drinks' }, desc: { hu: 'Folyadék- és elektrolitpótlás edzéshez!', en: 'Hydration & electrolytes!' }, brands: [ { name: 'Gatorade', icon: '🏃', items: [ { name: 'Gatorade Cool Blue 0.5L', price: '550 Ft', drs: true, img: '' }, { name: 'Gatorade Lemon-Lime 0.5L', price: '550 Ft', drs: true, img: '' } ] } ] },
             'edes-edessegek': { title: { hu: '🍪 Édes Édességek', en: '🍪 Sweet Snacks' }, desc: { hu: 'Nassolnivalók.', en: 'Sweet treats.' }, brands: [ { name: 'Édességek', icon: '🍪', items: [ { name: 'Pilóta Keksz 180g', price: '640 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/762/221/049/2290/front_hu.43.400.jpg' }, { name: 'Detki Csokis Cookie 130g', price: '480 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/744/611/8633/front_hu.12.400.jpg' } ] } ] },
             'sos-edessegek': { title: { hu: '🥨 Sós Édességek', en: '🥨 Salty Snacks' }, desc: { hu: 'Sós rágcsák.', en: 'Salty bites.' }, brands: [ { name: 'Sós snackek', icon: '🥨', items: [ { name: 'Chio Sós Chips 130g', price: '690 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/599/720/011/5120/front_hu.30.400.jpg' }, { name: 'Elephant Sós Perec 80g', price: '340 Ft', drs: false, img: 'https://images.openfoodfacts.org/images/products/642/474/000/2202/front_hu.22.400.jpg' } ] } ] }
+        };
+
+        // ----- MENÜ FORDÍTÁSOK -----
+        const menuTranslations = {
+            hu: {
+                drinks: '🥤 Üdítők ▼',
+                sweets: '🍬 Édességek ▼',
+                subDrinks: ['Energiaitalok', 'Rostos italok', 'Üdítők', 'Jeges teák', 'Ásványvizek', 'Sportitalok'],
+                subSweets: ['Édes édességek', 'Sós édességek']
+            },
+            en: {
+                drinks: '🥤 Drinks ▼',
+                sweets: '🍬 Sweets ▼',
+                subDrinks: ['Energy drinks', 'Juices', 'Sodas', 'Iced teas', 'Mineral waters', 'Sports drinks'],
+                subSweets: ['Sweet snacks', 'Salty snacks']
+            }
         };
 
         // ----- segédletek -----
@@ -763,6 +780,7 @@
             const descEl = document.getElementById('catDesc');
             const logoContainer = document.getElementById('logoContainer');
             isHome = false;
+            window._currentCategory = key;
             logoContainer.classList.add('small');
             titleEl.classList.add('left');
             titleEl.innerText = data.title[currentLang] || data.title.hu;
@@ -778,6 +796,7 @@
 
         function goHome() {
             isHome = true;
+            window._currentCategory = null;
             const titleEl = document.getElementById('catTitle');
             const descEl = document.getElementById('catDesc');
             const logoContainer = document.getElementById('logoContainer');
@@ -789,6 +808,18 @@
             document.getElementById('productContainer').innerHTML = '';
         }
 
+        // ----- MENÜ FRISSÍTÉS NYELV VÁLTÁSKOR -----
+        function updateMenuLanguage(lang) {
+            const t = menuTranslations[lang] || menuTranslations.hu;
+            document.getElementById('menuDrinks').innerHTML = t.drinks;
+            document.getElementById('menuSweets').innerHTML = t.sweets;
+            const drinkSubs = document.querySelectorAll('#italokSubmenu .submenu-btn');
+            const sweetSubs = document.querySelectorAll('#edessegSubmenu .submenu-btn');
+            t.subDrinks.forEach((txt, i) => { if (drinkSubs[i]) drinkSubs[i].innerText = txt; });
+            t.subSweets.forEach((txt, i) => { if (sweetSubs[i]) sweetSubs[i].innerText = txt; });
+        }
+
+        // ----- ESEMÉNYEK -----
         document.getElementById('logoImage').addEventListener('click', function(e) { if (!isHome) goHome(); });
 
         function toggleSubmenu(id) { document.getElementById(id).classList.toggle('show'); }
@@ -814,25 +845,20 @@
         settingsClose.addEventListener('click', closeSettings);
         settingsOverlay.addEventListener('click', (e) => { if (e.target === settingsOverlay) closeSettings(); });
 
-        // nyelv
+        // nyelvváltás – frissíti a menüt és a tartalmat
         langSelect.addEventListener('change', function() {
             currentLang = this.value;
-            if (isHome) goHome();
-            else {
-                // frissítsük a jelenlegi kategóriát – de nincs eltárolva, ezért újra kell renderelni?
-                // egyszerűbb: ha nem home, akkor az aktuális kategória címet és leírást frissítjük a data alapján,
-                // de a termékek maradnak. Csak a címet és leírást cseréljük.
-                // de mivel nem tudjuk melyik kategória van, egy gyors megoldás: a jelenlegi title-ből kiszedjük a kulcsot?
-                // inkább tároljuk el az aktuális kategória kulcsát.
-                if (window._currentCategory) {
-                    const data = productsData[window._currentCategory];
-                    if (data) {
-                        document.getElementById('catTitle').innerText = data.title[currentLang] || data.title.hu;
-                        document.getElementById('catDesc').innerText = data.desc[currentLang] || data.desc.hu;
-                    }
-                } else {
-                    goHome();
+            updateMenuLanguage(currentLang);
+            if (isHome) {
+                goHome();
+            } else if (window._currentCategory) {
+                const data = productsData[window._currentCategory];
+                if (data) {
+                    document.getElementById('catTitle').innerText = data.title[currentLang] || data.title.hu;
+                    document.getElementById('catDesc').innerText = data.desc[currentLang] || data.desc.hu;
                 }
+            } else {
+                goHome();
             }
         });
 
@@ -842,17 +868,10 @@
             this.innerText = document.body.classList.contains('dark') ? '☀️ Világos mód' : '🌙 Sötét mód';
         });
 
-        // kategória kiválasztáskor eltároljuk a kulcsot
-        const origShow = showCategory;
-        showCategory = function(key) {
-            window._currentCategory = key;
-            origShow(key);
-        };
-
         // kezdőoldal
         goHome();
-
-        // nyelv alapértelmezett
+        // menü alapértelmezett
+        updateMenuLanguage('hu');
         langSelect.value = 'hu';
     </script>
 </body>
